@@ -7,6 +7,7 @@ import com.rapidcode.api.email.EmailService;
 import com.rapidcode.api.email.EmailTemplateName;
 import com.rapidcode.api.handler.DuplicateAdminException;
 import com.rapidcode.api.handler.DuplicateEmailException;
+import com.rapidcode.api.handler.OperationNotPermittedException;
 import com.rapidcode.api.handler.UserNotFoundException;
 import com.rapidcode.api.role.RoleRepository;
 import com.rapidcode.api.token.TokenRepository;
@@ -33,6 +34,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AuthenticationService implements AuthenticationServiceInterface {
@@ -236,26 +239,47 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         }
     }
 
-    //Reset password
-    public void sendPasswordResetEmail(String email) throws MessagingException {
-        User user = repository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        String resetToken = userUtils.generateAndSaveActivationToken(user);
+    public void processForgotPassword(String email) throws MessagingException{
+        Optional<User> userOptional = repository.findByEmail(email);
 
-        emailService.sendPasswordResetEmail(
-                user.getEmail(),
-                user.getUsersName(),
-                EmailTemplateName.FORGOT_PASSWORD,
-                forgot_password_url,
-                resetToken,
-                "Password Reset Request"
-        );
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            // Generate a reset token
+            String token = UUID.randomUUID().toString();
+            LocalDateTime expiryTime = LocalDateTime.now().plusHours(1);
+
+            Token resetToken = Token.builder()
+                    .token(token)
+                    .tokenType(TokenType.PASSWORD_RESET)
+                    .user(user)
+                    .expiresAt(expiryTime)
+                    .createdAt(LocalDateTime.now())
+                    .revoked(false)
+                    .expired(false)
+                    .build();
+            tokenRepository.save(resetToken);
+
+            userUtils.sendResetPasswordEmail(user, token);
+        }else{
+            throw new OperationNotPermittedException("User not found with email: " + email);
+
+        }
+
     }
+
 
     public void resetPassword(String token, String newPassword) {
         Token resetToken = tokenRepository.findByToken(token)
                 .orElseThrow(() -> new RuntimeException("Invalid token"));
+
+        if (resetToken.getTokenType() != TokenType.PASSWORD_RESET) {
+            throw new OperationNotPermittedException("Token is not a password reset token");
+        }
+        if (resetToken.isRevoked()) {
+            throw new RuntimeException("Reset token has already been used or revoked");
+        }
 
         if (LocalDateTime.now().isAfter(resetToken.getExpiresAt())) {
             throw new RuntimeException("Reset token has expired");
@@ -267,10 +291,11 @@ public class AuthenticationService implements AuthenticationServiceInterface {
         user.setPassword(passwordEncoder.encode(newPassword));
         repository.save(user);
 
+        // Mark the token as used
         resetToken.setValidatedAt(LocalDateTime.now());
+        resetToken.setRevoked(true);
         tokenRepository.save(resetToken);
     }
-
 
 
 

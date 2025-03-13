@@ -59,4 +59,29 @@ public class UserUtils {
                 "Account activation"
         );
     }
+
+    public void sendDeactivatedValidationEmail(User user, String link) throws MessagingException {
+        var token =generateAndSaveActivationToken(user);
+        emailService.sendAccountDeactivationEmail(
+                user.getEmail(),
+                user.getUsersName(),
+                "Account deactivation",
+                link
+        );
+    }
+
+    public void sendResetPasswordEmail(User user, String token) {
+        try {
+            emailService.sendPasswordResetEmail(
+                    user.getEmail(),
+                    user.getUsersName(),
+                    EmailTemplateName.FORGOT_PASSWORD,
+                    "",
+                    token,
+                    "Password Reset Request"
+            );
+        } catch (MessagingException e) {
+            throw new RuntimeException("Failed to send password reset email", e);
+        }
+    }
 }

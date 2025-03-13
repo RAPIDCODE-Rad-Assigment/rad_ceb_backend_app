@@ -1,5 +1,7 @@
 package com.rapidcode.api.auth;
 
+import com.rapidcode.api.user.ForgotPasswordRequest;
+import com.rapidcode.api.user.UserStatusChangeRequest;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -48,6 +50,28 @@ public class AuthenticationController {
     }
 
 
+    @PostMapping("/forgot-password")
+    public ResponseEntity<Map<String, Object>> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) throws Exception {
+        service.processForgotPassword(request.email());
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Password reset email sent if the email exists.");
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<Map<String, Object>> resetPassword(@RequestParam String token, @RequestParam String newPassword) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            service.resetPassword(token, newPassword);
+            response.put("message", "Password has been reset");
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            response.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
+    }
+
+
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @Valid
@@ -72,31 +96,11 @@ public class AuthenticationController {
         service.activateAccount(token);
     }
 
-//    @PostMapping("/forgot-password")
-//    public ResponseEntity<String> forgotPassword(@RequestParam String email) {
-//        try {
-//            service.sendPasswordResetEmail(email);
-//            return ResponseEntity.ok("Password reset email sent");
-//        } catch (UsernameNotFoundException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-//        } catch (MessagingException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error sending email");
-//        }
-//    }
 
-    @PostMapping("/reset-password")
-    public ResponseEntity<String> resetPassword(@RequestParam String token, @RequestParam String newPassword) {
-        try {
-            service.resetPassword(token, newPassword);
-            return ResponseEntity.ok("Password has been reset");
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+    @PostMapping("/resend-activation")
+    public ResponseEntity<String> resendActivationCode(@RequestBody UserStatusChangeRequest request) throws MessagingException {
+        service.resendActivationCode(request.email());
+        return ResponseEntity.ok("Activation code resent successfully");
     }
 
-//    @PostMapping("/resend-activation")
-//    public ResponseEntity<String> resendActivationCode(@RequestBody UserStatusChangeRequest request) throws MessagingException {
-//        service.resendActivationCode(request.email());
-//        return ResponseEntity.ok("Activation code resent successfully");
-//    }
 }

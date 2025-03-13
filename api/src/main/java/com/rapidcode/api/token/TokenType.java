@@ -1,6 +1,7 @@
 package com.rapidcode.api.token;
 
 public enum TokenType {
-    BEARER
+    BEARER,
+    PASSWORD_RESET
 }
 

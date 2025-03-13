@@ -50,6 +50,17 @@ application:
         activation-url: http://localhost:4200/activate-account
         forget_password_url: http://localhost:4200/reset-password
 
+  file:
+    uploads:
+      base-path: ./uploads
+      temp-file-path: ./temp
+      user-path: ./users
+  env:
+    urls:
+      app-url: http://localhost:8080
+
+
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
