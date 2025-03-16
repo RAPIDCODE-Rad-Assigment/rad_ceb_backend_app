@@ -2,8 +2,13 @@ package com.rapidcode.api.user;
 
 
 import com.rapidcode.api.file.FileUploadResponse;
+import com.rapidcode.api.role.RoleMapper;
+import com.rapidcode.api.role.RoleResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserMapper {
@@ -34,6 +39,9 @@ public class UserMapper {
         }else{
             pi = null;
         }
+        List<RoleResponse> roleResponses = user.getRoles().stream()
+                .map(RoleMapper::toRoleResponse)
+                .toList();
 
         return UserResponse.builder()
                 .id(user.getId())
@@ -41,6 +49,10 @@ public class UserMapper {
                 .email(user.getEmail())
                 .profile_image_url(pi)
                 .enabled(user.isEnabled())
+                .fullName(user.getFullName())
+                .address(user.getAddress())
+                .roles(roleResponses)
+                .phoneNumber(user.getPhoneNumber())
                 .build();
     }
 }

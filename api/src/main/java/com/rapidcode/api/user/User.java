@@ -25,6 +25,9 @@ public class User implements UserDetails, Principal {
 
     private String usersName;
 
+    @Column(name = "full_name")
+    private String fullName;
+
     @Column(unique = true)
     private String email;
 
@@ -33,6 +36,9 @@ public class User implements UserDetails, Principal {
     private String profile_image_url;
 
     private boolean accountLocked;
+
+    private String address;
+    private String phoneNumber;
 
     private boolean enabled;
 
@@ -55,25 +61,24 @@ public class User implements UserDetails, Principal {
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
 
-    // Default constructor
     public User() {
     }
 
-    // All-args constructor
-    public User(UUID id, String usersName, String email, String password, String profile_image_url,
-                boolean accountLocked, boolean enabled, List<Role> roles, List<Token> tokens,
-                LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
+    public User(UUID id, String usersName, String fullName, String email, String password, String profile_image_url, boolean accountLocked, String phoneNumber, String address, boolean enabled, List<Role> roles, List<Token> tokens, LocalDateTime lastModifiedDate, LocalDateTime createdDate) {
         this.id = id;
         this.usersName = usersName;
+        this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.profile_image_url = profile_image_url;
         this.accountLocked = accountLocked;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
         this.enabled = enabled;
         this.roles = roles;
         this.tokens = tokens;
-        this.createdDate = createdDate;
         this.lastModifiedDate = lastModifiedDate;
+        this.createdDate = createdDate;
     }
 
     // Getters and Setters
@@ -99,6 +104,30 @@ public class User implements UserDetails, Principal {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
@@ -230,6 +259,9 @@ public class User implements UserDetails, Principal {
         private String email;
         private String password;
         private String profile_image_url;
+        private String fullName;
+        private String address;
+        private String phoneNumber;
         private boolean accountLocked;
         private boolean enabled;
         private List<Role> roles;
@@ -292,8 +324,39 @@ public class User implements UserDetails, Principal {
             return this;
         }
 
-        public User build() {
-            return new User(id, usersName, email, password, profile_image_url, accountLocked, enabled, roles, tokens, createdDate, lastModifiedDate);
+        public Builder fullName(String fullName) {
+            this.fullName = fullName;
+            return this;
         }
+
+        public Builder address(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder phoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public User build() {
+            return new User(
+                    id,
+                    usersName,
+                    fullName,
+                    email,
+                    password,
+                    profile_image_url,
+                    accountLocked,
+                    phoneNumber,
+                    address,
+                    enabled,
+                    roles,
+                    tokens,
+                    lastModifiedDate,
+                    createdDate
+            );
+        }
+
     }
 }

@@ -6,9 +6,7 @@ import com.rapidcode.api.handler.CannotChangeStatusException;
 import com.rapidcode.api.handler.OperationNotPermittedException;
 import com.rapidcode.api.handler.UserNotFoundException;
 import com.rapidcode.api.role.RoleName;
-import com.rapidcode.api.token.Token;
 import com.rapidcode.api.token.TokenRepository;
-import com.rapidcode.api.token.TokenType;
 import com.rapidcode.api.util.TokenUtils;
 import com.rapidcode.api.util.UserUtils;
 import jakarta.mail.MessagingException;
@@ -24,9 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j

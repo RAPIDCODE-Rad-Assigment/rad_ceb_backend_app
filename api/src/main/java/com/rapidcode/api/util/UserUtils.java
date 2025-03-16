@@ -84,4 +84,14 @@ public class UserUtils {
             throw new RuntimeException("Failed to send password reset email", e);
         }
     }
+
+    public void sendAccountCreatedEmail(String email,  String password, String fullName) throws MessagingException {
+        emailService.sendAccountCreatedEmail(
+                email,
+                fullName,
+                EmailTemplateName.ACCOUNT_CREATED,
+                password,
+                "Account created"
+        );
+    }
 }

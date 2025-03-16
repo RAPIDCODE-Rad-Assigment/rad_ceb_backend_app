@@ -56,7 +56,7 @@ public class EmailService {
         Context context = new Context();
         context.setVariables(properties);
 
-        helper.setFrom("contact@danumalk.com");
+        helper.setFrom("contact@ceblk.com");
         helper.setTo(to);
         helper.setSubject(subject);
 
@@ -98,7 +98,7 @@ public class EmailService {
         Context context = new Context();
         context.setVariables(properties);
 
-        helper.setFrom("contact@danumalk.com");
+        helper.setFrom("contact@ceblk.com");
         helper.setTo(to);
         helper.setSubject(subject);
 
@@ -121,7 +121,7 @@ public class EmailService {
         Context context = new Context();
         context.setVariables(properties);
 
-        helper.setFrom("contact@danumalk.com");
+        helper.setFrom("contact@ceblk.com");
         helper.setTo(to);
         helper.setSubject(subject);
 
@@ -145,11 +145,51 @@ public class EmailService {
         Context context = new Context();
         context.setVariables(properties);
 
-        helper.setFrom("contact@danumalk.com");
+        helper.setFrom("contact@ceblk.com");
         helper.setTo(to);
         helper.setSubject(subject);
 
         String template = templateEngine.process(templateName, context);
+        helper.setText(template, true);
+
+        mailSender.send(mimeMessage);
+    }
+
+
+    @Async
+    public void sendAccountCreatedEmail(
+            String to,
+            String fullName,
+            EmailTemplateName emailTemplate,
+            String password,
+            String subject
+    ) throws MessagingException {
+        String templateName;
+        if (emailTemplate == null) {
+            templateName = "account_created_email";
+        } else {
+            templateName = emailTemplate.getName();
+        }
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(
+                mimeMessage,
+                MULTIPART_MODE_MIXED,
+                UTF_8.name()
+        );
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("fullName", fullName);
+        properties.put("password", password);
+        Context context = new Context();
+        context.setVariables(properties);
+
+        helper.setFrom("contact@ceblk.com");
+        helper.setTo(to);
+        helper.setSubject(subject);
+
+        String template = templateEngine.process(templateName, context);
+
         helper.setText(template, true);
 
         mailSender.send(mimeMessage);

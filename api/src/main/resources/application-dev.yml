@@ -17,6 +17,9 @@ spring:
       database: postgresql
       database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+  thymeleaf:
+      cache: false
+
   servlet:
     multipart:
       max-file-size: 50MB
