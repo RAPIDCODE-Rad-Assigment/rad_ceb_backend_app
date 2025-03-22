@@ -16,20 +16,20 @@ public enum Permission {
     USER_CREATE("user:create"),
     USER_DELETE("user:delete"),
 
-    POST_READ("post:read"),
-    POST_UPDATE("post:update"),
-    POST_CREATE("post:create"),
-    POST_DELETE("post:delete"),
+    METER_READER_READ("meter_reader:read"),
+    METER_READER_UPDATE("meter_reader:update"),
+    METER_READER_CREATE("meter_reader:create"),
+    METER_READER_DELETE("meter_reader:delete"),
 
-    COMMENT_READ("comment:read"),
-    COMMENT_UPDATE("comment:update"),
-    COMMENT_CREATE("comment:create"),
-    COMMENT_DELETE("comment:delete"),
+    METER_READ("meter:read"),
+    METER_UPDATE("meter:update"),
+    METER_CREATE("meter:create"),
+    METER_DELETE("meter:delete"),
 
-    REACTION_READ("reaction:read"),
-    REACTION_UPDATE("reaction:update"),
-    REACTION_CREATE("reaction:create"),
-    REACTION_DELETE("reaction:delete");
+    BILL_READ("bill:read"),
+    BILL_UPDATE("bill:update"),
+    BILL_CREATE("bill:create"),
+    BILL_DELETE("bill:delete");
 
     private final String permission;
 

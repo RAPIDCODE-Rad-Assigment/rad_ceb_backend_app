@@ -22,4 +22,10 @@ public interface UserRepository extends JpaRepository<User, UUID> , JpaSpecifica
     @Query("SELECT u FROM User u WHERE LOWER(u.usersName) LIKE LOWER(CONCAT('%', :name, '%'))")
     Page<User> searchUsersByName(@Param("name") String name, Pageable pageable);
 
+    Page<User> findByFullNameContainingIgnoreCaseAndRoles_Name(String fullName, String role, Pageable pageable);
+
+    Page<User> findByFullNameContainingIgnoreCase(String fullName, Pageable pageable);
+
+    Page<User> findByRoles_Name(String role, Pageable pageable);
+
 }

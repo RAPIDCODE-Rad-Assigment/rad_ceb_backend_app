@@ -12,7 +12,5 @@ public interface UserServiceInterface {
     void disableUser(UserStatusChangeRequest disableUserRequest) throws MessagingException;
     UserResponse updateUserProfile(UUID id, UserRequest editUserRequest) ;
     UserResponse getCurrentUser(UserDetails userDetails);
-    PageResponse<UserResponse> getAllUsersForAdmin(int page, int size);
-    void deleteUser(UUID id, UserDetails userDetails);
 
 }

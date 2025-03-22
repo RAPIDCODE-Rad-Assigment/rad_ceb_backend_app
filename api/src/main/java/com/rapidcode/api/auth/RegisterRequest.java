@@ -17,18 +17,27 @@ public class RegisterRequest {
     @Size(min = 8, message = "Password must be at least 8 characters long")
     private String password;
 
-    // Default constructor
+    @NotBlank(message = "full name is required")
+    private String fullName;
+
+    @NotBlank(message = "address is required")
+    private String address;
+
+    @NotBlank(message = "phone number is required")
+    private String phoneNumber;
+
     public RegisterRequest() {
     }
 
-    // All-args constructor
-    public RegisterRequest(String usersName, String email, String password) {
+    public RegisterRequest(String usersName, String email, String password, String fullName, String address, String phoneNumber) {
         this.usersName = usersName;
         this.email = email;
         this.password = password;
+        this.fullName = fullName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
-    // Getters and Setters
     public String getUsersName() {
         return usersName;
     }
@@ -53,6 +62,30 @@ public class RegisterRequest {
         this.password = password;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     // Builder pattern
     public static Builder builder() {
         return new Builder();
@@ -62,6 +95,9 @@ public class RegisterRequest {
         private String usersName;
         private String email;
         private String password;
+        private String fullName;
+        private String address;
+        private String phoneNumber;
 
         public Builder usersName(String usersName) {
             this.usersName = usersName;
@@ -78,8 +114,23 @@ public class RegisterRequest {
             return this;
         }
 
+        public Builder fullName(String fullName) {
+            this.fullName = fullName;
+            return this;
+        }
+
+        public Builder address(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder phoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
         public RegisterRequest build() {
-            return new RegisterRequest(usersName, email, password);
+            return new RegisterRequest(usersName, email, password, fullName, address, phoneNumber);
         }
     }
 }

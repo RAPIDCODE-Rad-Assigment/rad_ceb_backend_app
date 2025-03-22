@@ -36,11 +36,12 @@ public class ApiApplication {
 			initializeRoles(roleRepository);
 
 			var admin = RegisterRequest.builder()
-					.usersName("DanumaLK")
-                    .email("danuma@example.com")
-                    .email("danuma@example.com")
-					.password("password")
-
+					.usersName("ceblk")
+                    .email("cebadmin@example.com")
+                    .address("Colombo")
+                    .phoneNumber("0771234567")
+                    .fullName("CEB Admin")
+                    .password("password")
 					.build();
 
 			System.out.println("Admin token: " + service.registerAdmin(admin).getAccessToken());
@@ -58,9 +59,9 @@ public class ApiApplication {
                     .name(RoleName.USER.name())
                     .permissions(Set.of(
                             Permission.USER_READ, Permission.USER_UPDATE, Permission.USER_DELETE, Permission.USER_CREATE,
-                            Permission.POST_READ, Permission.POST_CREATE, Permission.POST_UPDATE, Permission.POST_DELETE,
-                            Permission.COMMENT_READ, Permission.COMMENT_CREATE, Permission.COMMENT_UPDATE, Permission.COMMENT_DELETE,
-                            Permission.REACTION_READ, Permission.REACTION_CREATE, Permission.REACTION_UPDATE, Permission.REACTION_DELETE
+                            Permission.METER_READER_READ, Permission.METER_READER_CREATE, Permission.METER_READER_UPDATE, Permission.METER_READER_DELETE,
+                            Permission.METER_READ, Permission.METER_CREATE, Permission.METER_UPDATE, Permission.METER_DELETE,
+                            Permission.BILL_READ, Permission.BILL_CREATE, Permission.BILL_UPDATE, Permission.BILL_DELETE
                     ))
                     .createdDate(LocalDateTime.now()) // Set createdDate here
                     .build();
@@ -73,9 +74,9 @@ public class ApiApplication {
                     .permissions(Set.of(
                             Permission.ADMIN_READ, Permission.ADMIN_UPDATE, Permission.ADMIN_DELETE, Permission.ADMIN_CREATE,
                             Permission.USER_READ, Permission.USER_UPDATE, Permission.USER_DELETE, Permission.USER_CREATE,
-                            Permission.POST_READ, Permission.POST_CREATE, Permission.POST_UPDATE, Permission.POST_DELETE,
-                            Permission.COMMENT_READ, Permission.COMMENT_CREATE, Permission.COMMENT_UPDATE, Permission.COMMENT_DELETE,
-                            Permission.REACTION_READ, Permission.REACTION_CREATE, Permission.REACTION_UPDATE, Permission.REACTION_DELETE
+                            Permission.METER_READER_READ, Permission.METER_READER_CREATE, Permission.METER_READER_UPDATE, Permission.METER_READER_DELETE,
+                            Permission.METER_READ, Permission.METER_CREATE, Permission.METER_UPDATE, Permission.METER_DELETE,
+                            Permission.BILL_READ, Permission.BILL_CREATE, Permission.BILL_UPDATE, Permission.BILL_DELETE
                     ))
                     .createdDate(LocalDateTime.now()) // Set createdDate here
                     .build();

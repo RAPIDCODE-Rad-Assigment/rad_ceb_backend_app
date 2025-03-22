@@ -1,7 +1,7 @@
 package com.rapidcode.api.user;
 
+import com.rapidcode.api.common.PageResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -54,4 +54,6 @@ public class UserController {
     public UserResponse getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
         return service.getCurrentUser(userDetails);
     }
+
+
 }

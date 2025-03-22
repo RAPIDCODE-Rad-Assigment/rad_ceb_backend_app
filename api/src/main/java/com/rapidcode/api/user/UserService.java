@@ -134,46 +134,4 @@ public class UserService implements UserServiceInterface {
     }
 
 
-    @Override
-    public PageResponse<UserResponse> getAllUsersForAdmin(int page, int size){
-        Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
-        Page<User> users = repository.findAll(pageable);
-        List<UserResponse> usersAsResponse = users.stream()
-                .map(userMapper::toUserResponse)
-                .toList();
-        return new PageResponse<>(
-                usersAsResponse,
-                users.getNumber(),
-                users.getSize(),
-                users.getTotalElements(),
-                users.getTotalPages(),
-                users.isFirst(),
-                users.isLast()
-        );
-    }
-
-    @Override
-    @Transactional
-    public void deleteUser(UUID id, UserDetails userDetails) {
-        var userToDelete = repository.findById(id)
-                .orElseThrow(() -> new OperationNotPermittedException("User not found with id: " + id));
-        var adminUser = repository.findByRoles_Name(String.valueOf(RoleName.ADMIN))
-                .orElseThrow(() -> new OperationNotPermittedException("Admin user not found with email: " + userDetails.getUsername()));
-
-        if (userToDelete.getId().equals(adminUser.getId())) {
-            throw new OperationNotPermittedException("Admin cannot delete themselves");
-        }
-
-        tokenRepository.deleteByUserId(id);
-
-        repository.delete(userToDelete);
-
-        try {
-            emailService.sendAccountDeletionEmail(userToDelete.getEmail(), userToDelete.getUsersName(), "Your Account Has Been Deleted");
-        } catch (MessagingException e) {
-            log.error("Failed to send account deletion email to {}: {}", userToDelete.getEmail(), e.getMessage());
-        }
-    }
-
-
 }
