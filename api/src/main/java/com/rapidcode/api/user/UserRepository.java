@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -27,5 +28,9 @@ public interface UserRepository extends JpaRepository<User, UUID> , JpaSpecifica
     Page<User> findByFullNameContainingIgnoreCase(String fullName, Pageable pageable);
 
     Page<User> findByRoles_Name(String role, Pageable pageable);
+
+    @Query("SELECT u FROM User u WHERE u.id NOT IN " +
+            "(SELECT u2.id FROM User u2 JOIN u2.roles r WHERE r.name IN :roles)")
+    Page<User> findAllExcludingRoles(@Param("roles") List<String> roles, Pageable pageable);
 
 }

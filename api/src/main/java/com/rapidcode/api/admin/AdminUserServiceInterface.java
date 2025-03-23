@@ -12,5 +12,6 @@ public interface AdminUserServiceInterface {
     ResultResponse<UserResponse> registerUser(RegisterUserRequest request) throws MessagingException;
     PageResponse<UserResponse> getAllUsersForAdmin(int page, int size, String name, String role);
     ResultResponse<UserResponse> deleteUser(UUID id, UserDetails userDetails);
+    PageResponse<UserResponse> getAllUsersExcludingAdminAndMeterReader(int page, int size) ;
 
 }

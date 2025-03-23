@@ -128,4 +128,30 @@ public class AdminUserService implements AdminUserServiceInterface{
         }
         return null;
     }
+
+
+    public PageResponse<UserResponse> getAllUsersExcludingAdminAndMeterReader(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
+
+        // Define roles to exclude
+        List<String> rolesToExclude = List.of(RoleName.ADMIN.name(), RoleName.METER_READER.name());
+
+        // Fetch users excluding ADMIN and METER_READER roles
+        Page<User> users = userRepository.findAllExcludingRoles(rolesToExclude, pageable);
+
+        // Map to UserResponse
+        List<UserResponse> usersAsResponse = users.stream()
+                .map(userMapper::toUserResponse)
+                .toList();
+
+        return new PageResponse<>(
+                usersAsResponse,
+                users.getNumber(),
+                users.getSize(),
+                users.getTotalElements(),
+                users.getTotalPages(),
+                users.isFirst(),
+                users.isLast()
+        );
+    }
 }

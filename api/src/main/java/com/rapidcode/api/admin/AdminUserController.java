@@ -45,4 +45,12 @@ public class AdminUserController {
         ResultResponse<UserResponse> response = adminUserServiceInterface.deleteUser(id, userDetails);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/excluding-admin-meter-reader")
+    public PageResponse<UserResponse> getAllUsersExcludingAdminAndMeterReader(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        return adminUserServiceInterface.getAllUsersExcludingAdminAndMeterReader(page, size);
+    }
 }

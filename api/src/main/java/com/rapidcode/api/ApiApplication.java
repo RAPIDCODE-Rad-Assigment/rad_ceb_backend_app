@@ -59,8 +59,6 @@ public class ApiApplication {
                     .name(RoleName.USER.name())
                     .permissions(Set.of(
                             Permission.USER_READ, Permission.USER_UPDATE, Permission.USER_DELETE, Permission.USER_CREATE,
-                            Permission.METER_READER_READ, Permission.METER_READER_CREATE, Permission.METER_READER_UPDATE, Permission.METER_READER_DELETE,
-                            Permission.METER_READ, Permission.METER_CREATE, Permission.METER_UPDATE, Permission.METER_DELETE,
                             Permission.BILL_READ, Permission.BILL_CREATE, Permission.BILL_UPDATE, Permission.BILL_DELETE
                     ))
                     .createdDate(LocalDateTime.now()) // Set createdDate here
