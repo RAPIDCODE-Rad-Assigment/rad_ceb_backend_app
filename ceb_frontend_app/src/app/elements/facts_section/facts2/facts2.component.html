@@ -1,0 +1,54 @@
+<div class="section-full p-b90 site-bg-primary">
+    <ng-template ngFor let-data [ngForOf]="data">
+        <div class="container">
+            <div class="section-content">
+                <div class="c-section-two">
+                    <div class="counter-block-half">
+                        <div class="row justify-content-center d-flex no-gutters">
+                            <div class="col-lg-3 col-md-6 col-sm-6" *ngFor = "let item of data.facts">
+                                <div class="wt-icon-box-wraper left">
+                                    <span class="icon-md p-t10">
+                                        <i class="{{item.icon}}"></i>
+                                    </span>
+                                    <div class="icon-content">
+                                        <div class="m-b5"><span class="counter">{{item.count}}</span></div>
+                                        <div class="icon-content-info">{{item.title}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="video-with-content m-b30">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12">
+                                <div class="video-left-content">
+                                    <h3 class="wt-title site-text-white">
+                                        {{data.subtitle}}
+                                    </h3>
+                                    <p>{{data.contact}}</p>
+                                    <p>{{data.email}}</p>
+                                    <i class="flaticon-customer-service"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-12">
+                                <div class="video-section-two overlay-wraper bg-cover"
+                                    style="background-image: url({{data.videoThumbnail}});">
+                                    <div class="overlay-main site-bg-black opacity-07"></div>
+                                    <a href="{{data.videoUrl}}"
+                                        class="mfp-video play-now-video">
+                                        <i class="icon fa fa-play"></i>
+                                        <span class="ripple"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

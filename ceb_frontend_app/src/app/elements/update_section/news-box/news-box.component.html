@@ -1,0 +1,27 @@
+<div class="col-lg-4 col-md-6 col-sm-12 m-b30" *ngFor = "let item of data">
+    <!--Block one-->
+    <div class="blog-post blog-post-4-outer">
+        <div class="wt-post-media wt-img-effect zoom-slow">
+            <a routerLink="{{item.linkToReadMore}}"><img src="{{item.image}}" alt=""></a>
+        </div>
+        <div class="wt-post-info">
+            <div class="wt-post-meta ">
+                <ul>
+                    <li class="post-date"><span>{{item.day}}</span>{{item.month}}</li>
+                    <li class="post-category">{{item.field}}</li>
+                </ul>
+            </div>
+            <div class="wt-post-title ">
+                <h4 class="post-title"><a routerLink="{{item.linkToReadMore}}">
+                    {{item.title}}
+                </a></h4>
+            </div>
+            <div class="wt-post-text ">
+                <p>{{item.description}}</p>
+            </div>
+            <div class="wt-post-readmore ">
+                <a routerLink="{{item.linkToReadMore}}" class="site-button-link black">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>

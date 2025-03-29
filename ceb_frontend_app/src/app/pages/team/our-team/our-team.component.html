@@ -1,0 +1,37 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Team Members" subtitle="Team Members"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- OUR TEAM START -->
+        <app-team1 [data]="teamSection1"></app-team1>
+        <!-- OUR TEAM SECTION END -->
+
+        <!-- OUR TEAM START -->
+        <app-team4 [data]="teamSection2"></app-team4>
+        <!-- OUR TEAM SECTION END -->
+
+        <!-- OUR TEAM START -->
+        <div class="section-full p-t120 p-b90">
+            <app-team3 [data]="teamSection3" [width]="3"></app-team3>
+        </div>
+        <!-- OUR TEAM SECTION END -->
+
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

@@ -1,0 +1,24 @@
+<div class="widget recent-posts-entry p-a20">
+    <ng-template ngFor let-data [ngForOf]="data">
+        <div class="text-left m-b30">
+            <h4 class="widget-title">{{data.title}}</h4>
+        </div>
+        <div class="section-content">
+            <div class="widget-post-bx">
+                <div class="widget-post clearfix" *ngFor = "let item of data.posts">
+                    <div class="wt-post-media">
+                        <img src="{{item.image}}" alt="">
+                    </div>
+                    <div class="wt-post-info">
+                        <div class="wt-post-header">
+                            <span class="post-date">{{item.date}}</span>
+                            <span class="post-title"> <a routerLink="{{item.postLink}}">
+                                {{item.title}}
+                            </a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

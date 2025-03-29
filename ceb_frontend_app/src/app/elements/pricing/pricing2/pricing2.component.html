@@ -1,0 +1,47 @@
+<div class="section-full p-t120 p-b90 site-bg-gray-light">
+
+    <div class="container">
+
+        <!-- TITLE START-->
+        <div class="section-head center wt-small-separator-outer">
+            <div class="wt-small-separator site-text-secondry">
+                <div class="sep-leaf-left"></div>
+                <div>Pricing</div>
+            </div>
+            <h2>Our Pricing Plan</h2>
+        </div>
+        <!-- TITLE END-->
+
+        <div class="section-content">
+            <div class="pricing-block-outer2">
+                <div class="row justify-content-center">
+
+                    <div class="col-lg-4 col-md-6 m-b30" *ngFor="let item of data">
+                        <div class="pricing-table-2">
+                            <div class="p-table-title">
+                                <h4 class="wt-title">
+                                    {{item.plan}} Plan
+                                </h4>
+                            </div>
+                            <div class="p-table-price">
+                                <span>{{item.price}}</span>
+                                <p>/{{item.tenure}}</p>
+                            </div>
+                            <div class="p-table-list">
+                                <ul>
+                                    <li *ngFor="let feature of item.features">{{feature.name}}</li>
+                                </ul>
+                            </div>
+                            <div class="p-table-btn">
+                                <a routerLink="{{item.purchaseLink}}" class="site-button-link black">Purchase Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="widget widget-insta-post">
+    <div class="text-left m-b30">
+        <h4 class="widget-title">Instagram</h4>
+    </div>
+    <ul>
+        <li *ngFor="let item of data"><a routerLink="{{item.link}}"><img src="{{item.image}}" alt="img"></a>
+        </li>
+    </ul>
+</div>

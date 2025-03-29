@@ -1,0 +1,48 @@
+<h3 class="comments-title m-t0">{{data.count}} Comments</h3>
+
+<!-- COMMENT LIST START -->
+<ol class="comment-list">
+
+    <li class="comment" *ngFor="let comment of data.comments">
+        <!-- COMMENT BLOCK -->
+        <div class="comment-body">
+            <div class="comment-author">
+                <img class="avatar photo" src="{{comment.userimage}}" alt="">
+                <cite class="fn">{{comment.username}}</cite>
+                <div class="reply">
+                    <a href="javascript:void(0);" class="comment-reply-link">Reply</a>
+                </div>
+            </div>
+            <div class="comment-meta">
+                <a routerLink="/blog-single">{{comment.date}}</a>
+            </div>
+            <p>{{comment.comment}}</p>
+
+        </div>
+        <!-- SUB COMMENT BLOCK -->
+        <ol class="children" *ngFor="let reply of comment.replies">
+            <li class="comment odd parent">
+
+                <div class="comment-body">
+                    <div class="comment-author">
+                        <img class="avatar photo" src="{{reply.userimage}}" alt="">
+                        <cite class="fn">{{reply.username}}</cite>
+                        <div class="reply">
+                            <a href="javascript:void(0);" class="comment-reply-link">Reply</a>
+                        </div>
+                    </div>
+                    <div class="comment-meta">
+                        <a routerLink="/blog-single">{{reply.date}}</a>
+                    </div>
+                    <p>
+                        {{reply.comment}}
+                    </p>
+
+                </div>
+
+            </li>
+        </ol>
+    </li>
+
+</ol>
+<!-- COMMENT LIST END -->

@@ -1,0 +1,60 @@
+<!-- ABOUT ONE SECTION START -->
+<div class="section-full p-t120 p-b90 bg-no-repeat bg-center bg-gray-light">
+    <div class="about-section-one">
+        <ng-template ngFor let-data [ngForOf]="data">
+            <div class="container">
+                <div class="section-content">
+                    <div class="row justify-content-center d-flex">
+
+                        <div class="col-lg-6 col-md-12 m-b30">
+                            <div class="about-max-one">
+                                <div class="about-max-one-media"><img src="{{data.sectionImage}}" alt=""></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-12 m-b30">
+                            <div class="about-section-one-right">
+                                <!-- TITLE START-->
+                                <div class="section-head left wt-small-separator-outer">
+                                    <div class="wt-small-separator site-text-primary">
+                                        <div class="sep-leaf-left"></div>
+                                        <div>{{data.title}}</div>
+                                    </div>
+                                    <h2>{{data.subtitle}}</h2>
+                                </div>
+                                <!-- TITLE END-->
+
+                                <div class="about-one">
+                                    <div class="about-year">
+                                        <div class="about-year-info">
+                                            <span>{{data.yearsOfSuccess}}</span>
+                                            <p>Year of Success</p>
+                                        </div>
+                                        <p>
+                                            {{data.description}}
+                                        </p>
+                                    </div>
+
+                                    <div class="row">
+                                            <div class="col-lg-6 col-md-12" *ngFor = "let item of data.features">
+                                                <div class="wt-icon-box-wraper left bg-black m-b30">
+                                                    <div class="icon-content">
+                                                        <h4 class="wt-tilte">{{item.title}}</h4>
+                                                        <p>{{item.description}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <a routerLink="/about1" class="site-button sb-bdr-dark">Learn More</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>
+<!-- ABOUT ONE SECTION END -->

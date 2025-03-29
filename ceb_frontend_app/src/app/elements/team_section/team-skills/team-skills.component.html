@@ -1,0 +1,45 @@
+<div class="section-full site-bg-gray-light p-t120 p-b90 ">
+
+    <div class="container">
+
+        <div class="team-deatail-featured">
+            <h3 class="wt-title m-b30">Featured skills</h3>
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 m-b30">
+                    <div class="our-future">
+
+                        <div *ngFor="let skill of data|slice:0:(data.length/2)">
+                            <span class="progressText "><B>{{skill.name}}</B></span>
+                            <div class="progress">
+                                <div class="progress-bar site-bg-primary progress-bar-striped progress-bar-animated"
+                                    role="progressbar" style="width: {{skill.percent}}%;" aria-valuenow="{{skill.percent}}" aria-valuemin="0"
+                                    aria-valuemax="100"></div><span>{{skill.percent}}%</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 m-b30">
+                    <div class="our-future">
+
+                        <div *ngFor="let skill of data|slice:(data.length/2):(data.length)">
+                            <span class="progressText "><B>{{skill.name}}</B></span>
+                            <div class="progress">
+                                <div class="progress-bar site-bg-primary progress-bar-striped progress-bar-animated"
+                                    role="progressbar" style="width: {{skill.percent}}%;" aria-valuenow="{{skill.percent}}" aria-valuemin="0"
+                                    aria-valuemax="100"></div><span>{{skill.percent}}%</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

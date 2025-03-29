@@ -1,0 +1,92 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Blog Single" subtitle="Blog Single"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- OUR BLOG START -->
+        <div class="section-full  p-t120 p-b90 bg-white">
+            <div class="container">
+
+                <!-- BLOG SECTION START -->
+                <div class="section-content">
+                    <div class="row d-flex justify-content-center">
+
+                        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 m-b30">
+                            <!-- BLOG START -->
+                            <div class="blog-post-single-outer">
+                                
+                                <app-blog-full [data]="blogDetails"></app-blog-full>
+
+                                <app-related-posts [data]="relatedPosts"></app-related-posts>
+
+                                <div class="clear" id="comment-list">
+                                    <div class="comments-area" id="comments">
+                                        
+                                        <!-- COMMENTS START -->
+                                        <app-comments-section [data]="commentsSection"></app-comments-section>
+                                        <!-- COMMENTS END -->
+
+                                            <!-- LEAVE A REPLY START -->
+                                            <app-leave-a-reply></app-leave-a-reply>
+                                            <!-- LEAVE A REPLY END -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SIDE BAR START -->
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 rightSidebar  m-b30">
+
+                            <aside class="side-bar">
+
+                                <app-box-about-author [data]="author"></app-box-about-author>
+
+                                <!-- SEARCH -->
+                                <app-box-search></app-box-search>
+
+                                <!-- RECENT POSTS -->
+                                <app-box-recent-posts [data]="recentPosts"></app-box-recent-posts>
+
+                                <!-- INSTA POSTS -->
+                                <app-box-instagram [data]="instagramPosts"></app-box-instagram>
+
+                                <!-- CATEGORY -->
+                                <app-box-categories [data]="categories"></app-box-categories>
+
+                                <!-- TAGS -->
+                                <app-box-tags [data]="tags"></app-box-tags>
+
+
+                            </aside>
+
+                        </div>
+                        <!-- SIDE BAR END -->
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- OUR BLOG END -->
+
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

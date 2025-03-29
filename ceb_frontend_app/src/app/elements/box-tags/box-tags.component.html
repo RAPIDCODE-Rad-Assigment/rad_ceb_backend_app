@@ -1,0 +1,10 @@
+<div class="widget widget_tag_cloud p-a20">
+    <div class="text-left m-b30">
+        <h4 class="widget-title">Tags</h4>
+
+    </div>
+
+    <div class="tagcloud">
+        <a *ngFor="let item of data" routerLink="{{item.link}}">{{item.title}}</a>
+    </div>
+</div>

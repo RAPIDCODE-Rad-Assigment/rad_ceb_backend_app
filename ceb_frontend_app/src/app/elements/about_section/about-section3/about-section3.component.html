@@ -1,0 +1,73 @@
+<div class="section-full p-t120 p-b90">
+    <div class="about-section-three">
+        <div class="container">
+            <div class="section-content">
+                <div class="row justify-content-center d-flex">
+
+                    <div class="col-lg-6 col-md-12 m-b30">
+                        <div class="about-max-three">
+                            <div class="about-max-three-media"><img src="{{data.sectionImage}}" alt="">
+                            </div>
+                            <div class="about-three">
+                                <div class="about-year">
+                                    <div class="about-year-info">
+                                        <span>{{data.projects}}</span>
+                                        <p>Projects Were Completed</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 m-b30">
+                        <div class="about-section-three-right">
+                            <!-- TITLE START-->
+                            <div class="section-head left wt-small-separator-outer">
+                                <div class="wt-small-separator site-text-primary">
+                                    <div class="sep-leaf-left"></div>
+                                    <div>{{data.title}}</div>
+
+                                </div>
+                                <h2>{{data.subtitle}}</h2>
+                            </div>
+                            <!-- TITLE END-->
+
+                            <div class="ab-three-info">
+                                <p>
+                                    {{data.description1}}
+                                </p>
+                            </div>
+
+                            <div class="row ab-two-icon-section">
+                                <div class="col-lg-6 col-md-12" *ngFor="let item of data.features">
+                                    <div class="wt-icon-box-wraper left bg-black m-b30">
+                                        <span class="icon-md site-text-primary">
+                                            <i class="{{item.icon}}"></i>
+                                        </span>
+                                        <div class="icon-content">
+                                            <h4 class="wt-tilte">{{item.title}}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ab-three-info">
+                                <p>
+                                    {{data.description2}}
+                                </p>
+                                <a routerLink="/about1" class="site-button sb-bdr-dark">Learn More</a>
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

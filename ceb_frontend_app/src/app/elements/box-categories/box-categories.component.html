@@ -1,0 +1,10 @@
+<div class="widget widget_services p-a20">
+    <div class="text-left m-b30">
+        <h4 class="widget-title">Categories</h4>
+
+    </div>
+    <ul>
+        <li *ngFor="let item of data"><a routerLink="{{item.link}}">{{item.title}}</a><span
+                class="badge">({{item.badge}})</span></li>
+    </ul>
+</div>

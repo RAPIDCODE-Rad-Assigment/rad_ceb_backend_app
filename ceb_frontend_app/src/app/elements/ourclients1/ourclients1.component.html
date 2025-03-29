@@ -1,0 +1,37 @@
+<!-- CLIENT LOGO SECTION START -->
+<div class="section-full site-bg-gray-light p-t120 p-b90 bg-cover"
+    style="background-image:url(assets/images/background/bg11.jpg);">
+    <ng-template ngFor let-data [ngForOf]="data">
+        <div class="container home-client-outer">
+
+            <!-- TITLE START-->
+            <div class="section-head center wt-small-separator-outer">
+                <div class="wt-small-separator site-text-primary">
+                    <div class="sep-leaf-left"></div>
+                    <div>{{data.title}}</div>
+                </div>
+                <h2>{{data.subtitle}}</h2>
+            </div>
+            <!-- TITLE END-->
+
+            <div class="section-content">
+
+                <div class="owl-carousel home-client-carousel owl-btn-vertical-center">
+
+                    <div class="item" *ngFor="let item of data.clients">
+                        <div class="ow-client-logo">
+                            <div class="client-logo client-logo-media">
+                                <a routerLink="/project1"><img src="{{item.image}}" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <app-features1 [data]="data.features" [padding]="1"></app-features1>
+    </ng-template>
+</div>
+<!-- CLIENT LOGO  SECTION End -->

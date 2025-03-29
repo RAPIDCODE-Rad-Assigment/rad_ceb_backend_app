@@ -1,0 +1,37 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Team Detail" subtitle="Team Detail"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+
+        <!-- OUR TEAM START -->
+        <app-team-profile [profile]="profile"></app-team-profile>
+        <!-- OUR TEAM SECTION END -->
+
+
+        <!-- BUILD FUTURE START -->
+        <app-team-skills [data]="skills"></app-team-skills>
+        <!-- BUILD FUTURE END -->
+
+        <!-- OUR TEAM START -->
+        <app-team4 [data]="teamSection" back="white"></app-team4>
+        <!-- OUR TEAM SECTION END -->
+
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

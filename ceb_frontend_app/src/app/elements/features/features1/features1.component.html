@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="help-blocks {{ padding != '0' ? 'm-t50 m-b30' : ''}}">
+        <div class="row justify-content-center no-gutters">
+            <!--Blocks-->
+            <div *ngFor="let item of data" class="col-lg-4 col-md-6 {{item.background}}">
+                <div class="help-block-content {{item.textColor}}">
+                    <div class="wt-icon-box-wraper left">
+                        <div class="wt-icon-box-sm">
+                            <span class="icon-cell site-bg-dark"><i class="{{item.icon}}"></i></span>
+                        </div>
+                        <div class="icon-content">
+                            <h4 class="wt-tilte">{{item.title}}</h4>
+                            <p>{{item.subtitle}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

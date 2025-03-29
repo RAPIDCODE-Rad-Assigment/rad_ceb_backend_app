@@ -1,0 +1,30 @@
+<div class="section-full p-t120 p-b90 half-section-outer">
+    <div class="half-section-bg-plat"></div>
+    <div class="container">
+
+        <!-- IMAGE CAROUSEL START -->
+        <div class="section-content clearfix">
+            <div class="half-section">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of data">
+                        <div class="wt-box m-b30">
+                            <div class="wt-media  hover-box-style-1">
+                                <img src="{{item.image}}" alt="">
+                                <div class="hover-box-content">
+                                    <div class="wt-icon-box-wraper center site-bg-white">
+                                        <div class="icon-content">
+                                            <h4 class="wt-tilte m-b10">{{item.title}}</h4>
+                                            <p>{{item.subtitle}}</p>
+                                            <a routerLink="{{item.link}}" class="site-button-link">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

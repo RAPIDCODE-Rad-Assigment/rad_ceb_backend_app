@@ -1,0 +1,68 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Services" subtitle="Our Services"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- SERVICES SECTION START -->
+        <div class="section-full p-t120  p-b90"
+            style="background-image:url(assets/images/background/map-bg-dark2.png);">
+
+            <div class="container">
+                <!-- TITLE START-->
+                <div class="section-head center wt-small-separator-outer">
+                    <div class="wt-small-separator site-text-primary">
+                        <div class="sep-leaf-left"></div>
+                        <div>Our Services</div>
+                    </div>
+                    <h2 class="wt-title">We Provide Best Services</h2>
+                </div>
+                <!-- TITLE END-->
+                <div class="s-section">
+                    <div class="row">
+
+                        <!-- COLUMNS -->
+                        <app-box-service1 class="col-lg-4 col-md-6 m-b30" *ngFor="let service of services"
+                            [data]="service"></app-box-service1>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <!-- SERVICES SECTION END -->
+
+        <!-- HELP SECTION START -->
+        <app-features1 class="section-full p-t0 p-b0" [data]="features" [padding]="0"></app-features1>
+        <!-- HELP SECTION End -->
+
+        <!-- SOME FACTS START -->
+        <app-facts1 [data]="factsSection"></app-facts1>
+        <!-- SOME FACTS END -->
+
+        <!-- TESTIMONIAL SECTION START -->
+        <div class="section-full  p-t120 p-b90 testimonial-2-outer site-bg-gray">
+            <app-testimonial2 [data]="testimonialsSection" [darkBack]="0"></app-testimonial2>
+        </div>
+        <!-- TESTIMONIAL SECTION END -->
+
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

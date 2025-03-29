@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="section-content">
+        <div class="c-section-three">
+            <div class="counter-block-half" style="background-image:url({{data.background}});">
+                <div class="row">
+                    <div class="col-lg-12" *ngFor="let item of data.facts">
+                        <div class="wt-icon-box-wraper center">
+                            <span class="icon-md p-t10 m-b20 site-text-primary">
+                                <i class="{{item.icon}}"></i>
+                            </span>
+                            <div class="icon-content">
+                                <div class="m-b5"><span class="counter">{{item.count}}</span></div>
+                                <div class="icon-content-info">{{item.title}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

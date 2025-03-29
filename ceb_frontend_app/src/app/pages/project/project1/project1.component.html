@@ -1,0 +1,53 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Project 1" subtitle="Project 1"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- Project START -->
+        <div class="section-full p-t120 p-b90 projects-outer-full">
+
+            <div class="container">
+
+                <!-- TITLE START-->
+                <div class="section-head center wt-small-separator-outer">
+                    <div class="wt-small-separator site-text-secondry">
+                        <div class="sep-leaf-left"></div>
+                        <div>Projects</div>
+                    </div>
+                    <h2 class="wt-title">Brilliant Ideas With Excellent Work </h2>
+                </div>
+                <!-- TITLE END-->
+
+                <div class="section-content">
+                    <div
+                        class="project-box-style1-outer no-gutters  row clearfix d-flex justify-content-center flex-wrap m-b30">
+
+                        <!-- COLUMNS -->
+                        <app-project-box1 class=" col-xl-4 col-lg-4 col-md-6 col-sm-6" *ngFor="let project of projects" [project]="project"></app-project-box1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Project SECTION END -->
+
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

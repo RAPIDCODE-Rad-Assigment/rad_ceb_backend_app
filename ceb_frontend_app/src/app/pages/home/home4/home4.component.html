@@ -1,0 +1,98 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header4></app-header4>
+    <!-- HEADER END -->
+    
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- SLIDER START -->
+        <app-slider4></app-slider4>
+        <!-- SLIDER END -->           
+
+        <!-- ABOUT COMPANY -->
+        <app-about-section4 [data]="about1"></app-about-section4>   
+        <!-- ABOUT COMPANY END -->
+
+        <!-- ABOUT ONE SECTION START -->
+        <app-about-section5 [data]="about2"></app-about-section5>   
+        <!-- ABOUT ONE SECTION END -->
+
+        <!-- SOME FACTS START -->
+        <app-facts4 [data]="factsSection"></app-facts4>   
+        <!-- SOME FACTS END -->              
+
+        <!-- Project 2 SECTION START -->
+        <div class="section-full p-t120 p-b90 bg-white">
+            <div class="container">
+
+                <!-- PAGINATION START -->
+                <div class="filter-wrap">
+                    <ul class="masonry-filter">
+                        <li class="active"><a data-filter="*" href="javascript:void(0);">All Categories</a></li>
+                        <li><a data-filter=".cat-1" href="javascript:void(0);">Architecture</a></li>
+                        <li><a data-filter=".cat-2" href="javascript:void(0);">Renovation</a></li>
+                        <li><a data-filter=".cat-3" href="javascript:void(0);">Construction</a></li>
+                        <li><a data-filter=".cat-4" href="javascript:void(0);">Painting</a></li>
+                        <li><a data-filter=".cat-5" href="javascript:void(0);">Building</a></li> 
+                    </ul>
+                </div>
+                <!-- PAGINATION END -->
+                
+                <!-- PROJECT CONTENT START -->
+                <div class="masonry-wrap row clearfix d-flex justify-content-center flex-wrap">
+                    <!-- COLUMNS 1 -->
+                    <div *ngFor="let item of projects" class="masonry-item {{item.category}} col-xl-4 col-lg-4 col-md-6 m-b30">
+                        <div class="project-outer2">
+
+                            <div class="project-style-2">
+                                <div class="project-media">
+                                    <img src="{{item.image}}" alt="">
+                                </div>
+
+                                <div class="wt-info">
+                                    <a routerLink="{{item.link}}"><i class="fa fa-link"></i></a>
+                                    <a class="elem pic-long" href="{{item.image}}" title="{{item.title}}" 
+                                    attr.data-lcl-txt="{{item.subtitle}}" attr.data-lcl-author="{{item.author}}" attr.data-lcl-thumb="{{item.image}}">
+                                    <i class="fa fa-expand"></i>    
+                                    </a>                                                                      
+                                </div>                              
+                            </div>
+
+                            <div class="project-content">
+                                <span class="project-category">{{item.title}}</span>	
+                                <h4 class="wt-title"><a routerLink="{{item.link}}">{{item.subtitle}}</a></h4>                                
+                            </div>
+
+                        </div>                          
+                    </div>                    
+                                                                                                                                
+                </div>
+                <!-- PROJECT CONTENT END --> 
+            </div>
+        </div>   
+        <!-- Project 2 SECTION END --> 
+
+        <!-- TESTIMONIAL SECTION START -->
+        <app-testimonial4 [data]="testimonialsSection"></app-testimonial4>
+        <!-- TESTIMONIAL SECTION END -->
+
+        <!-- OUR TEAM START -->
+        <app-team5 [data]="teamSection"></app-team5>   
+        <!-- OUR TEAM SECTION END -->
+        
+        <!-- HELP SECTION START -->
+        <app-features1 class="section-full p-t0 p-b0" [data]="features" [padding]="0"></app-features1>
+        <!-- HELP SECTION End -->
+
+    </div>
+    <!-- CONTENT END -->
+
+    <!-- FOOTER START -->
+    <app-footer4></app-footer4>
+    <!-- FOOTER END -->
+
+</div>
+
+<app-loader></app-loader>

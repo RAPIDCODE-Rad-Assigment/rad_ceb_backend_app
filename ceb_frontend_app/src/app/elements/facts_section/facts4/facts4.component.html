@@ -1,0 +1,53 @@
+<div class="section-full p-t120 p-b90 bg-cover" style="background-image:url({{data.sectionBackground}});">
+    <div class="container">
+        <div class="section-content c-section-four">
+
+            <div class="row justify-content-center d-flex align-items-center">
+
+                <div class="col-lg-6 col-md-12 m-b30">
+                    <div class="video-section-three overlay-wraper bg-cover"
+                        style="background-image: url({{data.videoThumbnail}});">
+                        <div class="overlay-main site-bg-black opacity-07"></div>
+                        <a href="{{data.videoUrl}}" class="mfp-video play-now-video">
+                            <i class="icon fa fa-play"></i>
+                            <span class="ripple"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 m-b30">
+                    <!-- TITLE START-->
+                    <div class="section-head left wt-small-separator-outer">
+                        <div class="wt-small-separator site-text-primary">
+                            <div class="sep-leaf-left"></div>
+                            <div>{{data.title}}</div>
+                        </div>
+                        <h2 class="wt-title">{{data.subtitle}}</h2>
+
+                    </div>
+                    <!-- TITLE END-->
+                    <div class="p-t30">
+                        <a routerLink="/about1" class="site-button sb-bdr-dark">Learn More</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row justify-content-center d-flex no-gutters m-b30">
+
+                <div class="col-lg-3 col-md-6 col-sm-6 site-bg-white" *ngFor="let item of data.facts">
+                    <div class="wt-icon-box-wraper left">
+                        <span class="icon-md p-t10">
+                            <i class="{{item.icon}}"></i>
+                        </span>
+                        <div class="icon-content">
+                            <div class="m-b5 site-text-primary"><span class="counter">{{item.count}}</span></div>
+                            <div class="icon-content-info">{{item.title}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

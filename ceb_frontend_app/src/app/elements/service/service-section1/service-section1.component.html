@@ -1,0 +1,59 @@
+<div class="section-full half-section-outer-1  bg-white">
+    <div class="half-section-top p-t120 site-bg-primary" style="background-image:url(assets/images/background/bg-dott3.png);">
+        <div class="container">
+            <div class="wt-separator-two-part when-bg-dark">
+                <div class="row wt-separator-two-part-row">
+                    <div class="col-lg-6 col-md-12 wt-separator-two-part-left">
+                        <!-- TITLE START-->
+                        <div class="section-head left wt-small-separator-outer">
+                            <div class="wt-small-separator">
+                                <div class="sep-leaf-left"></div>
+                                <div>{{data.title}}</div>
+                            </div>
+                            <h2 class="wt-title">{{data.subtitle}}</h2>
+                        </div>
+                        <!-- TITLE END-->
+                    </div>
+
+
+                    <div class="col-lg-6 col-md-12 wt-separator-two-part-right">
+                        <p class="p_discription">
+                            {{data.description}}
+                        </p>
+                        <a routerLink="/services" class="site-button-secondry sb-bdr-light">Learn More</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="half-section-bottom">
+        <div class="container">
+            <div class="section-content">
+                <div class="owl-carousel service-slider-two m-b30">
+                    <!-- COLUMNS -->
+                    <div class="item " *ngFor="let item of data.services">
+
+                        <div class="project-box-style1">
+                            <div class="project-content">
+                                <h4 class="project-title-large"><a routerLink="{{item.link}}">{{item.title}}</a></h4>
+                            </div>
+                            <div class="project-media">
+                                <img src="{{item.image}}" alt="">
+                            </div>
+                            <div class="project-view">
+                                <a class="elem pic-long project-view-btn" href="{{item.image}}"
+                                attr.data-lcl-txt="{{item.title}}" attr.data-lcl-author="{{item.author}}"
+                                attr.data-lcl-thumb="{{item.image}}">
+                                    <i></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

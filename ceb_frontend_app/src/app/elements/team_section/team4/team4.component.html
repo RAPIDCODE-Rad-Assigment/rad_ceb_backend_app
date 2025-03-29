@@ -1,0 +1,49 @@
+<div class="section-full p-t120 p-b90 {{ back == 'white' ? 'site-bg-white' : 'site-bg-gray-light' }}">
+
+    <div class="container">
+        <!-- TITLE START-->
+        <div class="section-head center wt-small-separator-outer">
+            <div class="wt-small-separator site-text-primary">
+                <div class="sep-leaf-left"></div>
+                <div>{{data.title}}</div>
+            </div>
+            <h2 class="wt-title">{{data.subtitle}}</h2>
+        </div>
+        <!-- TITLE END-->
+
+        <div class="section-content">
+            <div class="team3-outer">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-12 m-b30" *ngFor="let item of data.team">
+                        <div class="wt-team-3">
+
+                            <div class="wt-media">
+                                <img src="{{item.image}}" alt="">
+                            </div>
+
+                            <div class="wt-info">
+                                <div class="team-detail">
+                                    <h4 class="m-t0 team-name"><a routerLink="/our-team-detail">{{item.name}}</a></h4>
+                                    <span class="team-position">{{item.expertise}}t</span>
+                                </div>
+                                <div class="team-social-center">
+                                    <ul class="team-social-bar">
+                                        <li><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="https://in.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="https://in.pinterest.com"><i class="fa fa-pinterest"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

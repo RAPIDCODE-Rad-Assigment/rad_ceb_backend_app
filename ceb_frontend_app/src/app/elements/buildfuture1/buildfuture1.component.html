@@ -1,0 +1,42 @@
+<!-- BUILD FUTURE START -->
+<div class="section-full bg-white">
+    <ng-template ngFor let-data [ngForOf]="data">
+        <div class="container-fluid future-section-outer ">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 future-section-left bg-cover"
+                    style="background-image:url({{data.sectionImage}});">
+
+                </div>
+                <div class="col-xl-6 col-lg-6 future-section-right bg-white">
+                    <div class="future-sec-right-content">
+                        <div class="future-right-inner">
+                            <div class="section-head left wt-small-separator-outer">
+                                <div class="wt-small-separator site-text-primary">
+                                    <div class="sep-leaf-left"></div>
+                                    <div>{{data.title}}</div>
+                                </div>
+                                <h2 class="wt-title">
+                                    {{data.subtitle}}
+                                </h2>
+                            </div>
+
+                            <div class="our-future">
+                                <div *ngFor="let item of data.fields">
+                                    <span class="progressText "><B>{{item.field}}</B></span>
+                                    <div class="progress">
+                                        <div class="progress-bar site-bg-primary progress-bar-striped progress-bar-animated"
+                                            role="progressbar" style="width: {{item.qualityPercentage}}%;" aria-valuenow="{{item.qualityPercentage}}" aria-valuemin="0"
+                                            aria-valuemax="100"></div><span>{{item.qualityPercentage}}%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>
+<!-- BUILD FUTURE END -->

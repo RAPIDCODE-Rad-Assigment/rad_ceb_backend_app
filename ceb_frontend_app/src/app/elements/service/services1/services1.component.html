@@ -1,0 +1,71 @@
+<!-- SERVICES SECTION START -->
+<div class="section-full half-section-outer-1  bg-white">
+    <ng-template ngFor let-data [ngForOf]="data">
+        <div class="half-section-top p-t120 site-bg-primary"
+            style="background-image:url(assets/images/background/bg-dott3.png);">
+            <div class="container">
+                <div class="wt-separator-two-part when-bg-dark">
+                    <div class="row wt-separator-two-part-row">
+                        <div class="col-lg-6 col-md-12 wt-separator-two-part-left">
+                            <!-- TITLE START-->
+                            <div class="section-head left wt-small-separator-outer">
+                                <div class="wt-small-separator">
+                                    <div class="sep-leaf-left"></div>
+                                    <div>{{data.title}}</div>
+                                </div>
+                                <h2 class="wt-title">
+                                    {{data.subtitle}}
+                                </h2>
+                            </div>
+                            <!-- TITLE END-->
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-12 wt-separator-two-part-right">
+                            <p class="p_discription">
+                                {{data.description}}
+                            </p>
+                            <a routerLink="/services" class="site-button-secondry sb-bdr-light">Learn More</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="half-section-bottom">
+            <div class="container">
+                <div class="section-content">
+                    <div class="owl-carousel service-slider-one m-b30">
+                        <!-- COLUMNS -->
+                        <div class="item " *ngFor="let item of data.services">
+
+                            <div class="service-icon-box-one bg-white">
+
+                                <div class="wt-icon-box-wraper">
+                                    <div class="icon-xl inline-icon">
+                                        <span class="icon-cell site-text-primary"><i class="{{item.icon}}"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="service-icon-box-title">
+                                    <h4 class="wt-title"><a routerLink="{{item.linkToReadMore}}">{{item.title}}</a></h4>
+                                </div>
+
+                                <div class="service-icon-box-content">
+                                    <p>
+                                        {{item.description}}
+                                    </p>
+                                    <a routerLink="{{item.linkToReadMore}}" class="site-button-link site-text-primary">Read
+                                        More</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>
+<!-- SERVICES SECTION END -->

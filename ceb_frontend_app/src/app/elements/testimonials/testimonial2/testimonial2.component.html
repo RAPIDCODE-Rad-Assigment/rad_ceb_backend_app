@@ -1,0 +1,43 @@
+<div class="container">
+    <!-- TITLE START-->
+    <div class="section-head center wt-small-separator-outer {{ darkBack == '1' ? 'when-bg-dark' : '' }}">
+        <div class="wt-small-separator site-text-primary">
+            <div class="sep-leaf-left"></div>
+            <div>{{data.title}}</div>
+        </div>
+        <h2 class="wt-title">{{data.subtitle}}</h2>
+    </div>
+    <!-- TITLE END-->
+    <div class="section-content">
+        <div class="testimonial-2-content owl-carousel m-b30">
+            <!--block 1-->
+            <div class="item" *ngFor="let item of data.testimonials">
+                <div class="testimonial-2">
+                    <div class="testimonial-content">
+                        <div class="testimonial-detail clearfix">
+                            <div class="testimonial-pic-block">
+                                <div class="testimonial-pic">
+                                    <img src="{{item.image}}" alt="">
+                                </div>
+                            </div>
+                            <div class="testimonial-info">
+                                <span class="testimonial-name">{{item.name}}</span>
+                                <span class="testimonial-position">{{item.designation}}</span>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-text">
+                            <p>
+                                {{item.quote}}
+                            </p>
+                            <i class="flaticon-quote-1"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

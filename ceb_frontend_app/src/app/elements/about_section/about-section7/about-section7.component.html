@@ -1,0 +1,71 @@
+<div class="section-full p-t120 p-b90 site-bg-gray">
+    <div class="container">
+        <div class="section-content">
+            <div class="row align-items-center">
+               
+                <div class="col-lg-6 col-md-12 m-b30">
+                    <div class="welcome-block-four">
+                        <div class="wt-box wt-product-gallery on-show-slider"> 
+                            <div id="sync1" class="owl-carousel owl-theme owl-btn-vertical-center m-b5">
+                                <div class="item" *ngFor="let item of data.slider">
+                                    <div class="mfp-gallery">
+                                        <div class="wt-box">
+                                            <div class="wt-thum-bx">
+                                                <img src="{{item.image}}" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="sync2" class="owl-carousel owl-theme">
+                                <div class="item" *ngFor="let item of data.slider">
+                                    <div class="wt-media">
+                                        <img src="{{item.thumb}}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12 m-b30">
+                    <div class="index-aboutfour">
+                        <div class="about-section-three-right">
+                            <!-- TITLE START-->
+                            <div class="section-head left wt-small-separator-outer">
+                                <div class="wt-small-separator site-text-primary">
+                                    <div  class="sep-leaf-left"></div>
+                                    <div>{{data.title}}</div>
+                                    
+                                </div>
+                                <h2>{{data.subtitle}}</h2>
+                            </div>
+                            <!-- TITLE END-->
+                        </div>
+                        
+                        <div class="wt-accordion " id="accordion">
+                            <div class="panel wt-panel" *ngFor="let item of data.features; let i = index;">
+                              <div class="acod-head {{i == 0 ? 'acc-actives' : ''}}" id="heading{{i}}">
+                                <h5 class="{{i == 0 ? 'acod-title' : 'mb-0'}}">
+                                  <a class="{{ i != 0 ? 'collapsed' : ''}}" data-toggle="collapse" href="#collapse{{i}}" aria-expanded="{{i == 0 ? true : false}}" aria-controls="collapse{{i}}">
+                                    {{item.title}}
+                                    <span class="indicator"><i class="fa"></i></span>
+                                  </a>
+                                </h5>
+                              </div>
+                          
+                              <div id="collapse{{i}}" class="collapse {{ i == 0 ? 'show' : ''}}" aria-labelledby="heading{{i}}" data-parent="#accordion">
+                                <div class="acod-content p-tb15">
+                                  {{item.description}}
+                                </div>
+                              </div>
+                            </div>
+                          </div>                                    
+                    </div>                               
+                </div> 
+
+            </div>
+        </div>
+    </div>
+</div>

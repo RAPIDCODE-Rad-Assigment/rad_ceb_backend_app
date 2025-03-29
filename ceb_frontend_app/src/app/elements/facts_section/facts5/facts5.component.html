@@ -1,0 +1,32 @@
+<div class="section-full p-t120 p-b90 site-bg-gray-light">
+    <div class="container">
+        <div class="section-content c-section-four">
+
+
+            <div class="video-section-four m-b30">
+                <img src="{{data.videoThumbnail}}" alt="">
+                <a href="{{data.videoUrl}}" class="mfp-video play-now-video">
+                    <i class="icon fa fa-play"></i>
+                    <span class="ripple"></span>
+                </a>
+            </div>
+
+
+            <div class="row justify-content-center d-flex">
+
+                <div class="col-lg-3 col-md-6 col-sm-6 m-b30" *ngFor="let item of data.facts; let i = index;">
+                    <div class="wt-icon-box-wraper left  {{ i%2 == 0 ? 'site-bg-gray' : 'site-bg-white'}}">
+                        <span class="icon-md p-t10">
+                            <i class="{{item.icon}}"></i>
+                        </span>
+                        <div class="icon-content">
+                            <div class="m-b5 site-text-primary"><span class="counter">{{item.count}}</span></div>
+                            <div class="icon-content-info">{{item.title}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

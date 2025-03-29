@@ -1,0 +1,77 @@
+<div class="section-full p-t120 p-b90 bg-white">
+    <div class="container">
+        <!-- TITLE START-->
+        <div class="section-head center wt-small-separator-outer text-center text-white">
+            <div class="wt-small-separator site-text-secondry">
+                <div class="sep-leaf-left"></div>
+                <div>FAQ's</div>
+            </div>
+            <h2>Get every single answers here.</h2>
+        </div>
+        <!-- TITLE END-->
+
+        <div class="section-content">
+            <div class="faq-outer">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <!-- Accordian -->
+                        <div class="wt-accordion  faq-accorfion m-b30" id="accordion5">
+
+                            <div class="panel wt-panel"
+                                *ngFor="let faq of faqs|slice:0:(faqs.length/2); let i = index;">
+                                <div class="acod-head  acc-actives">
+                                    <h4 class="acod-title">
+                                        <a data-toggle="collapse" href="#collapseOne{{i}}"
+                                            class="{{i != 0 ? 'collapsed' : ''}}" data-parent="#accordion5">
+                                            {{faq.question}}
+                                            <span class="indicator"><i class="fa fa-plus"></i></span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne{{i}}" class="acod-body collapse {{i == 0 ? 'show' : ''}}">
+                                    <div class="acod-content">
+                                        <p>
+                                            {{faq.answer}}
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6">
+                        <!-- Accordian -->
+                        <div class="wt-accordion  faq-accorfion m-b30" id="accordion5">
+
+                            <div class="panel wt-panel"
+                                *ngFor="let faq of faqs|slice:(faqs.length/2):(faqs.length); let i = index;">
+                                <div class="acod-head  acc-actives">
+                                    <h4 class="acod-title">
+                                        <a data-toggle="collapse" href="#collapseOne{{i+(faqs.length/2)}}"
+                                            class="{{i != 0 ? 'collapsed' : ''}}" data-parent="#accordion5">
+                                            {{faq.question}}
+                                            <span class="indicator"><i class="fa fa-plus"></i></span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne{{i+(faqs.length/2)}}"
+                                    class="acod-body collapse {{i == 0 ? 'show' : ''}}">
+                                    <div class="acod-content">
+                                        <p>
+                                            {{faq.answer}}
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

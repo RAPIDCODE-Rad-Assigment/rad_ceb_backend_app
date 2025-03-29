@@ -1,0 +1,47 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Blog Grid" subtitle="Blog Grid"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- OUR BLOG START -->
+        <div class="section-full p-t120  p-b90 bg-white">
+            <div class="container">
+                <div class="section-head center wt-small-separator-outer">
+                    <div class="wt-small-separator site-text-primary">
+                        <div class="sep-leaf-left"></div>
+                        <div>{{blogNews.title}}</div>
+                    </div>
+                    <h2 class="wt-title">{{blogNews.subtitle}}</h2>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="section-content">
+                    <div class="row d-flex justify-content-center">
+                        <app-news-box class="row d-flex justify-content-center" [data]="blogNews.news">
+                        </app-news-box>
+                    </div>
+                    <div class="text-center m-b30">
+                        <a routerLink="/blog-single" class="site-button sb-bdr-dark">Load More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- OUR BLOG END -->
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

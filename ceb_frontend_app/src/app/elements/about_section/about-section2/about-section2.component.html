@@ -1,0 +1,69 @@
+<div class="section-full p-t120 p-b90 bg-no-repeat bg-center bg-gray-light">
+    <ng-template ngFor let-data [ngForOf]="data">
+        <div class="about-section-two">
+            <div class="container">
+                <div class="section-content">
+                    <div class="row justify-content-center d-flex">
+
+                        <div class="col-lg-5 col-md-12 m-b30">
+                            <div class="about-max-two">
+                                <div class="about-max-two-media"><img src="{{data.sectionImage}}" alt=""></div>
+                                <div class="about-two">
+                                    <div class="about-year">
+                                        <div class="about-year-info">
+                                            <span>{{data.yearsOfExperience}}</span>
+                                            <p>Years of Working Experience in this field</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-7 col-md-12 m-b30">
+                            <div class="about-section-two-right">
+                                <!-- TITLE START-->
+                                <div class="section-head left wt-small-separator-outer">
+                                    <div class="wt-small-separator site-text-primary">
+                                        <div class="sep-leaf-left"></div>
+                                        <div>{{data.title}}</div>
+
+                                    </div>
+                                    <h2>{{data.subtitle}}</h2>
+                                </div>
+                                <!-- TITLE END-->
+
+
+                                <div class="row ab-two-icon-section">
+                                    <div class="col-lg-6 col-md-12" *ngFor = "let item of data.features">
+                                        <div class="wt-icon-box-wraper left bg-black m-b30">
+                                            <span class="icon-md p-t10">
+                                                <i class="{{item.icon}}"></i>
+                                            </span>
+                                            <div class="icon-content">
+                                                <h4 class="wt-tilte">{{item.title}}</h4>
+                                                <p>{{item.description}}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="ab-two-info">
+                                    <p>
+                                        {{data.description}}
+                                    </p>
+                                    <a routerLink="/about1" class="site-button sb-bdr-dark">Learn More</a>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

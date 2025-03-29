@@ -1,0 +1,61 @@
+<div class="section-full  p-t120 p-b90 testimonial-1-outer bg-cover"
+    style="background-image:url({{data.background}});">
+    <div class="container">
+        <div class="section-content">
+            <!-- TITLE START-->
+            <div class="wt-separator-two-part">
+                <div class="row wt-separator-two-part-row">
+                    <div class="col-lg-8 col-md-12 wt-separator-two-part-left">
+                        <!-- TITLE START-->
+                        <div class="section-head left wt-small-separator-outer">
+                            <div class="wt-small-separator site-text-primary">
+                                <div class="sep-leaf-left"></div>
+                                <div>{{data.title}}</div>
+                            </div>
+                            <h2>{{data.subtitle}}</h2>
+                        </div>
+                        <!-- TITLE END-->
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-12 wt-separator-two-part-right text-right">
+                        <a routerLink="/our-team" class="site-button sb-bdr-dark">Learn More</a>
+                    </div>
+
+                </div>
+            </div>
+            <!-- TITLE END-->
+
+            <div class="testimonial-1-content owl-carousel">
+                <!--blocks-->
+                <div class="item" *ngFor="let item of data.testimonials">
+                    <div class="testimonial-1 bg-white">
+                        <div class="testimonial-content">
+                            <div class="testimonial-detail clearfix">
+                                <div class="testimonial-pic-block">
+                                    <div class="testimonial-pic">
+                                        <img src="{{item.image}}" alt="">
+                                    </div>
+                                </div>
+                                <div class="testimonial-info">
+                                    <span class="testimonial-name">{{item.name}}</span>
+                                    <span class="testimonial-position">{{item.designation}}</span>
+                                </div>
+                            </div>
+
+                            <div class="testimonial-text">
+                                <p>
+                                    {{item.quote}}
+                                </p>
+                                <i class="flaticon-quote-1"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

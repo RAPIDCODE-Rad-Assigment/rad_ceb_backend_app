@@ -1,0 +1,63 @@
+<div class="section-full p-t120 p-b90 site-bg-black">
+    <ng-template ngFor let-data [ngForOf]="data">
+        <div class="container">
+
+            <!-- TITLE START-->
+            <div class="wt-separator-two-part">
+                <div class="row wt-separator-two-part-row">
+                    <div class="col-lg-8 col-md-12 wt-separator-two-part-left">
+                        <!-- TITLE START-->
+                        <div class="section-head left wt-small-separator-outer when-bg-dark">
+                            <div class="wt-small-separator site-text-primary">
+                                <div class="sep-leaf-left"></div>
+                                <div>{{data.title}}</div>
+                            </div>
+                            <h2 class="wt-title">{{data.subtitle}}</h2>
+                        </div>
+                        <!-- TITLE END-->
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-12 wt-separator-two-part-right text-right">
+                        <a routerLink="/our-team" class="site-button sb-bdr-dark">All Member</a>
+                    </div>
+
+                </div>
+            </div>
+            <!-- TITLE END-->
+
+            <div class="section-content">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-12 m-b30" *ngFor = "let item of data.team">
+                        <div class="wt-team-2">
+
+                            <div class="wt-media">
+                                <img src="{{item.image}}" alt="">
+                            </div>
+
+                            <div class="wt-info">
+                                <div class="team-detail white">
+                                    <span class="team-position">{{item.expertise}}</span>
+                                    <h4 class="m-t0 team-name"><a routerLink="/our-team-detail">{{item.name}}</a></h4>
+                                    <div class="team-social-center">
+                                        <ul class="team-social-bar">
+                                            <li><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
+                                            </li>
+                                            <li><a href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="https://in.linkedin.com"><i class="fa fa-linkedin"></i></a>
+                                            </li>
+                                            <li><a href="https://in.pinterest.com"><i class="fa fa-pinterest"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </ng-template>
+</div>

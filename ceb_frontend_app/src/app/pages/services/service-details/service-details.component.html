@@ -1,0 +1,68 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Service Detail" subtitle="Service Detail"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- SERVICE DETAIL SECTION START -->
+        <div class="section-full p-t120 p-b90 bg-white">
+            <div class="section-content">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-md-12 rightSidebar">
+                            <div class="all_services m-b30">
+                                <ul>
+                                    <li *ngFor="let item of services; let i=index;">
+                                        <a routerLink="{{item.link}}" class="{{ i == 2 ? 'active' : ''}}">{{item.title}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="service-side-btn m-b30 site-bg-primary text-white p-a20">
+                                <h4 class="wt-title m-b20">Brochures</h4>
+                                <p>View our 2020 financial prospectus brochure for an easy to read guide on all of the
+                                    services offer.</p>
+
+
+                                <div class="wt-icon-box-wraper left ">
+                                    <a href="javascript:void(0);" class="btn-block  p-a10 m-tb5">
+                                        <span class="text-black m-r10"><i class="fa fa-file-pdf-o"></i></span>
+                                        <strong class="text-black">Download .PDF</strong>
+                                    </a>
+                                </div>
+                                <div class="wt-icon-box-wraper left">
+                                    <a href="javascript:void(0);" class="btn-block  p-a10 m-tb5">
+                                        <span class="text-black m-r10"><i class="fa fa-file-word-o"></i></span>
+                                        <strong class="text-black"> Download .DOC</strong>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9 col-md-12" [innerHTML]="service.description">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SERVICE DETAIL SECTION END -->
+
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

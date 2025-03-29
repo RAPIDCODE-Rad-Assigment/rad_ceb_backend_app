@@ -1,0 +1,74 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Project Detail" subtitle="Project Detail"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- info SECTION START -->
+        <div class="section-full p-t120 p-b120 bg-gray">
+            <div class="container">
+                <div class="section-content">
+                    <div class="row">
+
+                        <div class="col-lg-8">
+                            <app-project-full [data]="project"></app-project-full>
+                        </div>
+
+                        <div class="col-lg-4 rightSidebar">
+
+                            <app-project-info [data]="project.info"></app-project-info>
+                            <app-brochures [data]="project.brochures"></app-brochures>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- info  SECTION END -->
+
+
+        <!-- PROJECT SECTION START -->
+        <div class="section-full  p-t120 p-b90 site-bg-gray-light">
+            <div class="container-fluid">
+                <!-- TITLE START-->
+                <div class="section-head center wt-small-separator-outer">
+                    <div class="wt-small-separator site-text-primary">
+                        <div class="sep-leaf-left"></div>
+                        <div>Our Projects</div>
+                    </div>
+                    <h2 class="wt-title">Related Projects</h2>
+                </div>
+                <!-- TITLE END-->
+
+                <div class="section-content">
+                    <div class="owl-carousel project-slider1  project-box-style1-outer m-b30">
+                        
+                        <!-- COLUMNS 1 -->
+                        <app-project-box1 class="item" *ngFor="let project of relatedProjects" [project]="project"></app-project-box1>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- PROJECT CHOOSE SECTION END -->
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

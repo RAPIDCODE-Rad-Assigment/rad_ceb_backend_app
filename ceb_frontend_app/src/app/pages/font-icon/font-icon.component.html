@@ -1,0 +1,41 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Font Icon" subtitle="Font Icon"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+
+        <div class="section-full p-t120 p-b90">
+            <div class="container">
+                <div class="section-content">
+                    <div class="wt-box">
+                        <div class="icon-font row d-flex justify-content-center flex-wrap">
+
+                            <div class="col-md-3 col-sm-6 m-b30" *ngFor="let icon of icons">
+                                <div class="icon-font-block">
+                                    <div class="flat-icon {{icon.name}}"></div>
+                                    <div class="class-name">.{{icon.name}}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+    
+</div>
+
+<app-loader></app-loader>

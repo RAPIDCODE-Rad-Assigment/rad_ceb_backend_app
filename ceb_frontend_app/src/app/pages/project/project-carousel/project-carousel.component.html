@@ -1,0 +1,30 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Project Carousel" subtitle="Project Carousel"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- carousel 1 SECTION START -->
+        <app-project-carousel1 [projects]="projects1"></app-project-carousel1>
+        <!-- carousel 1  SECTION END -->
+
+        <!-- PROJECT carousel 2 SECTION START -->
+        <app-project-carousel2 [projects]="projects2"></app-project-carousel2>
+        <!-- PROJECT carousel CHOOSE SECTION END -->
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

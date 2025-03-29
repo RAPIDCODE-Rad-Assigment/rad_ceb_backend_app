@@ -1,0 +1,36 @@
+<div class="page-wraper">
+
+    <app-header1></app-header1>
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="About Us 1" subtitle="About 1"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- ABOUT ONE SECTION START -->
+        <app-about-section1 [data]="aboutUsSection"></app-about-section1>
+        <!-- ABOUT ONE SECTION END -->
+
+        <!-- SOME FACTS START -->
+        <app-facts2 [data]="factsSection"></app-facts2>
+        <!-- SOME FACTS END -->
+    
+        <!-- TESTIMONIAL SECTION START -->
+        <app-testimonial1 [data]="testimonialsSection"></app-testimonial1>
+        <!-- TESTIMONIAL SECTION END -->
+
+        <!-- BUILD FUTURE START -->
+        <app-buildfuture1 [data]="buildFutureSection"></app-buildfuture1>
+        <!-- BUILD FUTURE END -->
+
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

@@ -1,0 +1,55 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header1></app-header1>
+    <!-- HEADER END -->
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- INNER PAGE BANNER -->
+        <app-page-banner title="Project 2" subtitle="Project 2"></app-page-banner>
+        <!-- INNER PAGE BANNER END -->
+
+        <!-- Project 2 SECTION START -->
+        <div class="section-full p-t120 p-b90 bg-white">
+            <div class="container">
+
+                <!-- PAGINATION START -->
+                <div class="filter-wrap">
+                    <ul class="masonry-filter">
+                        <li class="active"><a data-filter="*" href="javascript:void(0);">All</a></li>
+                        <li><a data-filter=".cat-1" href="javascript:void(0);">Energy</a></li>
+                        <li><a data-filter=".cat-2" href="javascript:void(0);">Industry</a></li>
+                        <li><a data-filter=".cat-3" href="javascript:void(0);">Construction</a></li>
+                        <li><a data-filter=".cat-4" href="javascript:void(0);">Oil & Gas</a></li>
+                        <li><a data-filter=".cat-5" href="javascript:void(0);">Automobile</a></li> 
+                        <li><a data-filter=".cat-6" href="javascript:void(0);">Industrial</a></li>
+                        <li><a data-filter=".cat-7" href="javascript:void(0);">Repair</a></li>
+                    </ul>
+                </div>
+                <!-- PAGINATION END -->
+
+                <!-- PROJECT CONTENT START -->
+                <div class="masonry-wrap row clearfix d-flex justify-content-center flex-wrap">
+
+                    <!-- COLUMNS -->
+                    <app-project-box2 *ngFor="let project of projects"
+                        class="masonry-item {{project.category}} col-xl-4 col-lg-4 col-md-6 m-b30" [project]="project">
+                    </app-project-box2>
+
+                </div>
+                <!-- PROJECT CONTENT END -->
+            </div>
+        </div>
+        <!-- Project 2 SECTION END -->
+
+
+    </div>
+    <!-- CONTENT END -->
+
+    <app-footer1></app-footer1>
+
+</div>
+
+<app-loader></app-loader>

@@ -1,0 +1,25 @@
+<!-- OUR BLOG START -->
+<div class="section-full p-b90 bg-white">
+    <ng-template ngFor let-data [ngForOf]="data">
+    <div class="half-section-top2 p-t120 site-bg-black bg-cover"
+        style="background-image:url(assets/images/background/map-bg-dark.png);">
+        <div class="container">
+            <div class="section-head center wt-small-separator-outer when-bg-dark">
+                <div class="wt-small-separator site-text-primary">
+                    <div class="sep-leaf-left"></div>
+                    <div>{{data.title}}</div>
+                </div>
+                <h2 class="wt-title">{{data.subtitle}}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="half-section-bottom2">
+        <div class="container">
+            <div class="section-content">
+                <app-news-box class="row d-flex justify-content-center" [data]="data.updates"></app-news-box>
+            </div>
+        </div>
+    </div>
+    </ng-template>
+</div>
+<!-- OUR BLOG END -->

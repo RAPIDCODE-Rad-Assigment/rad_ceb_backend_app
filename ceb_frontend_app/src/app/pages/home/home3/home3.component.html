@@ -1,0 +1,112 @@
+<div class="page-wraper">
+
+    <!-- HEADER START -->
+    <app-header3></app-header3>
+    <!-- HEADER END -->
+
+    <!-- CONTENT START -->
+    <div class="page-content">
+
+        <!-- SLIDER START -->
+        <app-slider3></app-slider3>
+        <!-- SLIDER END -->
+
+        <!-- ABOUT THREE SECTION START -->
+        <app-about-section3 [data]="aboutSection"></app-about-section3>
+        <!-- ABOUT ONE SECTION END -->
+
+        <!-- SERVICES SECTION START -->
+        <div class="section-full p-t120  p-b90 site-bg-gray-light">
+
+            <div class="container">
+                <!-- TITLE START-->
+                <div class="section-head center wt-small-separator-outer">
+                    <div class="wt-small-separator site-text-primary">
+                        <div class="sep-leaf-left"></div>
+                        <div>Decision For Nature</div>
+                    </div>
+                    <h2 class="wt-title">We Provide Best Services</h2>
+                </div>
+                <!-- TITLE END-->
+
+                <div class="s-section-two m-b30">
+                    <div class="row">
+                        <!-- COLUMNS -->
+                        <app-box-service2 class="col-lg-3 col-md-6 m-b30" *ngFor="let item of services" [data]="item">
+                        </app-box-service2>
+                    </div>
+
+                    <div class="text-center">
+                        <a routerLink="/services" class="site-button sb-bdr-dark">View all Services</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- SERVICES SECTION END -->
+
+        <!-- SOME FACTS START -->
+        <div class="section-full p-t120 bg-cover c-section-three-wrapper"
+            style="background-image:url(assets/images/agriculture/background/bg1.jpg);">
+            <app-facts3 [data]="factsSection"></app-facts3>
+        </div>
+        <!-- SOME FACTS END -->
+
+        <!-- Project START -->
+        <div class="section-full p-t120 p-b90 projects-outer-full">
+
+            <div class="container">
+
+                <!-- TITLE START-->
+                <div class="section-head center wt-small-separator-outer">
+                    <div class="wt-small-separator site-text-secondry">
+                        <div class="sep-leaf-left"></div>
+                        <div>Projects</div>
+                    </div>
+                    <h2 class="wt-title">Brilliant Ideas With Excellent Work </h2>
+                </div>
+                <!-- TITLE END-->
+
+                <div class="section-content">
+                    <div class="project-box-style1-outer row clearfix d-flex justify-content-center flex-wrap m-b30">
+
+                        <!-- COLUMNS 1 -->
+                        <app-project-box4 class="col-xl-3 col-lg-3 col-md-6 col-sm-6 m-b30" *ngFor="let project of projects" [project]="project"></app-project-box4>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Project SECTION END -->
+
+        <!-- OUR TEAM START -->
+        <div class="section-full p-t120 p-b90 bg-cover bg-center"
+            style="background-image:url(assets/images/agriculture/background/bg2.jpg);">
+            <app-team3 [data]="teamSection" [width]="4"></app-team3>
+        </div>
+        <!-- OUR TEAM SECTION END -->
+
+        <!-- OUR BLOG START -->
+        <app-updates2 [data]="updatesSection"></app-updates2>
+        <!-- OUR BLOG END -->
+
+        <!-- TESTIMONIAL SECTION START -->
+        <div class="section-full  p-t120 p-b90 testimonial-3-outer"
+            style="background-image:url(assets/images/agriculture/background/bg3.jpg);">
+            <app-testimonial3 [data]="testimonialsSection"></app-testimonial3>
+        </div>
+        <!-- TESTIMONIAL SECTION END -->
+
+    </div>
+    <!-- CONTENT END -->
+
+    <!-- FOOTER START -->
+    <app-footer3></app-footer3>
+    <!-- FOOTER END -->
+
+</div>
+
+<app-loader></app-loader>
