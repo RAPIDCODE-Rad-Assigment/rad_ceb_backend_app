@@ -1,5 +1,6 @@
 package com.rapidcode.api.meter;
 
+import com.rapidcode.api.user.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,4 +24,7 @@ public interface MeterRepository extends JpaRepository<Meter, UUID>, JpaSpecific
 
     // Add this method for pagination and filtering
     @NotNull Page<Meter> findAll(Specification<Meter> specification, @NotNull Pageable pageable);
+
+    @Query("SELECT u FROM User u LEFT JOIN FETCH u.assignedAreas WHERE u.id = :userId")
+    Optional<User> findByIdWithAssignedAreas(@Param("userId") UUID userId);
 }

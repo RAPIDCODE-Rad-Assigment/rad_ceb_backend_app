@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.UUID;
 
 public interface AdminUserServiceInterface {
-    ResultResponse<UserResponse> registerUser(RegisterUserRequest request) throws MessagingException;
+    ResultResponse<UserResponse> registerUser(RegisterUserRequest request, UUID userId) throws MessagingException;
     PageResponse<UserResponse> getAllUsersForAdmin(int page, int size, String name, String role);
     ResultResponse<UserResponse> deleteUser(UUID id, UserDetails userDetails);
-    PageResponse<UserResponse> getAllUsersExcludingAdminAndMeterReader(int page, int size) ;
-
+    ResultResponse<String> removeAllAreasFromReader(UUID userId);
+    ResultResponse<String> removeAreaFromReader(UUID userId, UUID areaId);
 }

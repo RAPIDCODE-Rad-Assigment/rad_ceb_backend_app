@@ -1,8 +1,11 @@
 package com.rapidcode.api.area;
 
+import com.rapidcode.api.meter.Meter;
+import com.rapidcode.api.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -21,5 +24,12 @@ public class Area {
 
     @Column(nullable = false)
     private String description;
+
+    @OneToMany(mappedBy = "area", fetch = FetchType.LAZY)
+    private List<Meter> meters;
+
+    @ManyToMany(mappedBy = "assignedAreas", fetch = FetchType.LAZY)
+    private List<User> assignedUsers;
+
 }
 

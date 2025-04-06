@@ -1,5 +1,7 @@
 package com.rapidcode.api.admin;
 
+import com.rapidcode.api.area.Area;
+import com.rapidcode.api.area.AreaRepository;
 import com.rapidcode.api.common.PageResponse;
 import com.rapidcode.api.common.ResultResponse;
 import com.rapidcode.api.email.EmailService;
@@ -28,6 +30,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -41,14 +44,47 @@ public class AdminUserService implements AdminUserServiceInterface{
     private final UserUtils userUtils;
     private final TokenRepository tokenRepository;
     private final EmailService emailService;
+    private final AreaRepository areaRepository;
 
+
+    @Transactional
     @Override
-    public ResultResponse<UserResponse> registerUser(RegisterUserRequest request) throws MessagingException {
+    public ResultResponse<UserResponse> registerUser(RegisterUserRequest request, UUID userId) throws MessagingException {
+        // Check if role is METER_READER
         Role role = roleRepository.findById(request.getRoleId())
                 .orElseThrow(() -> new RuntimeException("Role not found"));
 
+        if (!role.getName().equals(RoleName.METER_READER.name())) {
+            throw new OperationNotPermittedException("Operation not permitted");
+        }
+        if (request.getAreaIds() != null && !request.getAreaIds().isEmpty()) {
+            List<User> existingReaders = userRepository.findUsersByAssignedAreaIds(request.getAreaIds());
+            if (!existingReaders.isEmpty()) {
+
+                List<Area> occupiedAreas = areaRepository.findAllById(
+                        existingReaders.stream()
+                                .flatMap(user -> user.getAssignedAreas().stream())
+                                .map(Area::getId)
+                                .distinct()
+                                .filter(request.getAreaIds()::contains)
+                                .toList()
+                );
+
+                String areaNames = occupiedAreas.stream()
+                        .map(Area::getName)
+                        .collect(Collectors.joining(", "));
+
+                throw new OperationNotPermittedException(
+                        "Areas already assigned to other readers: " + areaNames);
+            }
+        }
+
         String rawPassword = UUID.randomUUID().toString();
         String encodedPassword = passwordEncoder.encode(rawPassword);
+
+        List<Area> areas = request.getAreaIds() != null && !request.getAreaIds().isEmpty()
+                ? areaRepository.findAllById(request.getAreaIds())
+                : List.of();
 
         User user = User.builder()
                 .usersName(request.getUsername())
@@ -60,6 +96,7 @@ public class AdminUserService implements AdminUserServiceInterface{
                 .enabled(true)
                 .accountLocked(false)
                 .createdDate(LocalDateTime.now())
+                .assignedAreas(areas)
                 .roles(List.of(role))
                 .build();
 
@@ -67,7 +104,6 @@ public class AdminUserService implements AdminUserServiceInterface{
 
         UserResponse userResponse = userMapper.toUserResponse(savedUser);
         userUtils.sendAccountCreatedEmail(user.getEmail(), rawPassword, user.getFullName());
-
 
         return ResultResponse.<UserResponse>builder()
                 .status("success")
@@ -130,28 +166,50 @@ public class AdminUserService implements AdminUserServiceInterface{
     }
 
 
-    public PageResponse<UserResponse> getAllUsersExcludingAdminAndMeterReader(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
 
-        // Define roles to exclude
-        List<String> rolesToExclude = List.of(RoleName.ADMIN.name(), RoleName.METER_READER.name());
 
-        // Fetch users excluding ADMIN and METER_READER roles
-        Page<User> users = userRepository.findAllExcludingRoles(rolesToExclude, pageable);
 
-        // Map to UserResponse
-        List<UserResponse> usersAsResponse = users.stream()
-                .map(userMapper::toUserResponse)
-                .toList();
+    @Transactional
+    public ResultResponse<String> removeAllAreasFromReader(UUID userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return new PageResponse<>(
-                usersAsResponse,
-                users.getNumber(),
-                users.getSize(),
-                users.getTotalElements(),
-                users.getTotalPages(),
-                users.isFirst(),
-                users.isLast()
-        );
+        if (isMeterReader(user)) {
+            throw new OperationNotPermittedException("Only meter readers can have areas removed");
+        }
+
+        userRepository.clearAllUserAreaAssignments(userId);
+        return ResultResponse.<String>builder()
+                .status("success")
+                .data("All areas removed from meter reader")
+                .build();
+    }
+
+    @Transactional
+    public ResultResponse<String> removeAreaFromReader(UUID userId, UUID areaId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Area area = areaRepository.findById(areaId)
+                .orElseThrow(() -> new RuntimeException("Area not found"));
+
+        if (isMeterReader(user)) {
+            throw new OperationNotPermittedException("Only meter readers can have areas removed");
+        }
+
+        if (!user.getAssignedAreas().contains(area)) {
+            throw new OperationNotPermittedException("User is not assigned to this area");
+        }
+
+        userRepository.removeUserAreaAssignment(userId, areaId);
+        return ResultResponse.<String>builder()
+                .status("success")
+                .data("Area removed from meter reader")
+                .build();
+    }
+
+    private boolean isMeterReader(User user) {
+        return user.getRoles().stream()
+                .noneMatch(role -> role.getName().equals(RoleName.METER_READER.name()));
     }
 }

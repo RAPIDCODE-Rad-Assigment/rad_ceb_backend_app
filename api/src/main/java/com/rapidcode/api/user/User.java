@@ -1,5 +1,6 @@
 package com.rapidcode.api.user;
 
+import com.rapidcode.api.area.Area;
 import com.rapidcode.api.role.Role;
 import com.rapidcode.api.token.Token;
 import jakarta.persistence.*;
@@ -61,10 +62,18 @@ public class User implements UserDetails, Principal {
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_assigned_areas",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "area_id")
+    )
+    private List<Area> assignedAreas;
+
     public User() {
     }
 
-    public User(UUID id, String usersName, String fullName, String email, String password, String profile_image_url, boolean accountLocked, String phoneNumber, String address, boolean enabled, List<Role> roles, List<Token> tokens, LocalDateTime lastModifiedDate, LocalDateTime createdDate) {
+    public User(UUID id, String usersName, String fullName, String email, String password, String profile_image_url, boolean accountLocked, String phoneNumber, String address, boolean enabled, List<Role> roles, List<Token> tokens, LocalDateTime lastModifiedDate, LocalDateTime createdDate, List<Area> assignedAreas) {
         this.id = id;
         this.usersName = usersName;
         this.fullName = fullName;
@@ -79,6 +88,7 @@ public class User implements UserDetails, Principal {
         this.tokens = tokens;
         this.lastModifiedDate = lastModifiedDate;
         this.createdDate = createdDate;
+        this.assignedAreas = assignedAreas;
     }
 
     // Getters and Setters
@@ -172,6 +182,14 @@ public class User implements UserDetails, Principal {
         this.roles = roles;
     }
 
+    public List<Area> getAssignedAreas() {
+        return assignedAreas;
+    }
+
+    public void setAssignedAreas(List<Area> assignedAreas) {
+        this.assignedAreas = assignedAreas;
+    }
+
     public List<Token> getTokens() {
         return tokens;
     }
@@ -262,6 +280,7 @@ public class User implements UserDetails, Principal {
         private String fullName;
         private String address;
         private String phoneNumber;
+        private List<Area> assignedAreas;
         private boolean accountLocked;
         private boolean enabled;
         private List<Role> roles;
@@ -339,6 +358,11 @@ public class User implements UserDetails, Principal {
             return this;
         }
 
+        public Builder assignedAreas(List<Area> assignedAreas) {
+            this.assignedAreas = assignedAreas;
+            return this;
+        }
+
         public User build() {
             return new User(
                     id,
@@ -354,7 +378,8 @@ public class User implements UserDetails, Principal {
                     roles,
                     tokens,
                     lastModifiedDate,
-                    createdDate
+                    createdDate,
+                    assignedAreas
             );
         }
 

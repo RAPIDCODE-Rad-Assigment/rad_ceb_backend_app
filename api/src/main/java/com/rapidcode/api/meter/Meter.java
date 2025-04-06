@@ -1,5 +1,6 @@
 package com.rapidcode.api.meter;
 
+import com.rapidcode.api.area.Area;
 import com.rapidcode.api.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -41,4 +42,11 @@ public class Meter {
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "area_id", nullable = false)
+    private Area area;
+
+    private Double lastReadingValue;
+    private LocalDateTime lastReadingDate;
 }

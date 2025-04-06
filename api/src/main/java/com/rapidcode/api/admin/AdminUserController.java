@@ -2,12 +2,14 @@ package com.rapidcode.api.admin;
 
 import com.rapidcode.api.common.PageResponse;
 import com.rapidcode.api.common.ResultResponse;
+import com.rapidcode.api.user.User;
 import com.rapidcode.api.user.UserResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +24,12 @@ public class AdminUserController {
 
     private final AdminUserServiceInterface adminUserServiceInterface;
 
-    @PostMapping("/register_user")
+    @PostMapping("/register_meter_reader")
     @PreAuthorize("hasAuthority('admin:read')")
-    public ResponseEntity<ResultResponse<UserResponse>> registerUser(@RequestBody RegisterUserRequest request) throws MessagingException {
-        ResultResponse<UserResponse> response = adminUserServiceInterface.registerUser(request);
+    public ResponseEntity<ResultResponse<UserResponse>> registerMeterReader(@RequestBody RegisterUserRequest request, Authentication connectedUser) throws MessagingException {
+        var user = ((User) connectedUser.getPrincipal());
+        UUID userId = user.getId();
+        ResultResponse<UserResponse> response = adminUserServiceInterface.registerUser(request, userId);
         return ResponseEntity.ok(response);
     }
 
@@ -46,11 +50,16 @@ public class AdminUserController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/excluding-admin-meter-reader")
-    public PageResponse<UserResponse> getAllUsersExcludingAdminAndMeterReader(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
-        return adminUserServiceInterface.getAllUsersExcludingAdminAndMeterReader(page, size);
+    @DeleteMapping("/readers/{userId}/areas")
+    public ResponseEntity<ResultResponse<String>> removeAllAreas(
+            @PathVariable UUID userId) {
+        return ResponseEntity.ok(adminUserServiceInterface.removeAllAreasFromReader(userId));
+    }
+
+    @DeleteMapping("/readers/{userId}/areas/{areaId}")
+    public ResponseEntity<ResultResponse<String>> removeArea(
+            @PathVariable UUID userId,
+            @PathVariable UUID areaId) {
+        return ResponseEntity.ok(adminUserServiceInterface.removeAreaFromReader(userId, areaId));
     }
 }

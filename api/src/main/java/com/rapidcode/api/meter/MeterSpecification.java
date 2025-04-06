@@ -3,6 +3,9 @@ package com.rapidcode.api.meter;
 import jakarta.persistence.criteria.Join;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.util.List;
+import java.util.UUID;
+
 
 public class MeterSpecification {
 
@@ -22,6 +25,15 @@ public class MeterSpecification {
             }
             Join<Object, Object> userJoin = root.join("user"); // Join with the User entity
             return criteriaBuilder.like(criteriaBuilder.lower(userJoin.get("usersName")), "%" + userName.toLowerCase() + "%");
+        };
+    }
+
+    public static Specification<Meter> hasAreaIdIn(List<UUID> areaIds) {
+        return (root, query, criteriaBuilder) -> {
+            if (areaIds == null || areaIds.isEmpty()) {
+                return criteriaBuilder.conjunction();
+            }
+            return root.get("area").get("id").in(areaIds);
         };
     }
 }

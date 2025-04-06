@@ -1,5 +1,6 @@
 package com.rapidcode.api.meter;
 
+import com.rapidcode.api.area.AreaResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,4 +21,6 @@ public class MeterResponse {
     private MeterUserResponse user;
     private LocalDateTime createdDate;
     private LocalDateTime lastModifiedDate;
+    private AreaResponse area;
+
 }

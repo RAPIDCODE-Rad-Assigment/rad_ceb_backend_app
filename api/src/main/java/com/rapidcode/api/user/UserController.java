@@ -25,7 +25,6 @@ public class UserController {
     }
 
     @PatchMapping("/change_password")
-    @PreAuthorize("hasAuthority('admin:update') or hasAuthority('user:update')")
     public ResponseEntity<?> changePassword(
             @RequestBody ChangePasswordRequest request,
             Principal connectedUser
@@ -35,7 +34,6 @@ public class UserController {
     }
 
     @PatchMapping("/disable_user")
-    @PreAuthorize("hasAuthority('admin:update') or hasAuthority('user:update')")
     public ResponseEntity<Boolean> disableUser(@RequestBody UserStatusChangeRequest disableUserRequest) throws Exception {
         service.disableUser(disableUserRequest);
         return ResponseEntity.ok(Boolean.TRUE);
@@ -43,14 +41,12 @@ public class UserController {
 
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('admin:update') or hasAuthority('user:update')")
     public ResponseEntity<UserResponse> updateUserProfile(@PathVariable UUID id, @RequestBody UserRequest updateRequest) {
         UserResponse response = service.updateUserProfile(id, updateRequest);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/me")
-    @PreAuthorize("hasAuthority('admin:read') or hasAuthority('user:read')")
     public UserResponse getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
         return service.getCurrentUser(userDetails);
     }

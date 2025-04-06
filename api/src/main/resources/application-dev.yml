@@ -8,7 +8,7 @@ spring:
       auto-commit: false
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     open-in-view: false
     properties:
@@ -52,6 +52,10 @@ application:
       frontend:
         activation-url: http://localhost:4200/activate-account
         forget_password_url: http://localhost:4200/reset-password
+
+  pricing:
+    base-rate: 10
+    tax-rate: 5
 
   file:
     uploads:

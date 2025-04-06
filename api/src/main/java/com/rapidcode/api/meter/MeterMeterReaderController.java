@@ -1,19 +1,23 @@
 package com.rapidcode.api.meter;
 
+import com.rapidcode.api.common.PageResponse;
 import com.rapidcode.api.common.ResultResponse;
+import com.rapidcode.api.user.User;
+import com.rapidcode.api.user.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("meter")
+@RequestMapping("reader/meter")
 @Tag(name = "Meter", description = "Meter Management APIs")
 @RequiredArgsConstructor
-public class MeterController {
+public class MeterMeterReaderController {
 
     private final MeterService service;
 
@@ -38,16 +42,27 @@ public class MeterController {
         return service.deleteMeter(meterId);
     }
 
-    @GetMapping
-    @Operation(summary = "Get All Meters", description = "Retrieves all meters with pagination and filtering.")
-    public ResultResponse<List<MeterResponse>> getAllMeters(
+
+    @GetMapping("/meters-for-meter-reader")
+    public ResultResponse<List<MeterResponse>> getAllMetersForMeterReader(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "createdDate") String sortBy,
-            @RequestParam(defaultValue = "DESC") String sortDir,
+            @RequestParam(defaultValue = "desc") String sortDir,
             @RequestParam(required = false) MeterStatus status,
-            @RequestParam(required = false) String userName // Add this parameter
+            @RequestParam(required = false) String userName,
+            @AuthenticationPrincipal User authenticatedUser
     ) {
-        return service.getAllMeters(page, size, sortBy, sortDir, status, userName);
+        return service.getAllMetersForMeterReader(
+                page, size, sortBy, sortDir, status, userName, authenticatedUser
+        );
+    }
+
+    @GetMapping("/excluding-admin-meter-reader")
+    public PageResponse<UserResponse> getAllUsersExcludingAdminAndMeterReader(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        return service.getAllUsersExcludingAdminAndMeterReader(page, size);
     }
 }

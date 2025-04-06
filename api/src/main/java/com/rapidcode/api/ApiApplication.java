@@ -25,31 +25,31 @@ public class ApiApplication {
         SpringApplication.run(ApiApplication.class, args);
     }
 
-    @Bean
-	public CommandLineRunner commandLineRunner(
-			AuthenticationService service,
-			RoleRepository roleRepository
-
-
-	) {
-		return args -> {
-			initializeRoles(roleRepository);
-
-			var admin = RegisterRequest.builder()
-					.usersName("ceblk")
-                    .email("cebadmin@example.com")
-                    .address("Colombo")
-                    .phoneNumber("0771234567")
-                    .fullName("CEB Admin")
-                    .password("password")
-					.build();
-
-			System.out.println("Admin token: " + service.registerAdmin(admin).getAccessToken());
-
-
-
-		};
-	}
+//    @Bean
+//	public CommandLineRunner commandLineRunner(
+//			AuthenticationService service,
+//			RoleRepository roleRepository
+//
+//
+//	) {
+//		return args -> {
+//			initializeRoles(roleRepository);
+//
+//			var admin = RegisterRequest.builder()
+//					.usersName("ceblk")
+//                    .email("cebadmin@example.com")
+//                    .address("Colombo")
+//                    .phoneNumber("0771234567")
+//                    .fullName("CEB Admin")
+//                    .password("password")
+//					.build();
+//
+//			System.out.println("Admin token: " + service.registerAdmin(admin).getAccessToken());
+//
+//
+//
+//		};
+//	}
 
 
     private void initializeRoles(RoleRepository roleRepository) {
@@ -79,6 +79,19 @@ public class ApiApplication {
                     .createdDate(LocalDateTime.now()) // Set createdDate here
                     .build();
             roleRepository.save(adminRole);
+        }
+
+        if (roleRepository.findByName(RoleName.METER_READER.name()).isEmpty()) {
+            Role meterReaderRole = Role.builder()
+                    .name(RoleName.METER_READER.name())
+                    .permissions(Set.of(
+
+                            Permission.METER_READER_READ, Permission.METER_READER_CREATE, Permission.METER_READER_UPDATE, Permission.METER_READER_DELETE,
+                            Permission.METER_READ, Permission.METER_CREATE, Permission.METER_UPDATE, Permission.METER_DELETE
+                    ))
+                    .createdDate(LocalDateTime.now()) // Set createdDate here
+                    .build();
+            roleRepository.save(meterReaderRole);
         }
     }
 
