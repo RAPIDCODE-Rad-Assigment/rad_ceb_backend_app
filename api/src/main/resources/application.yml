@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: dev
+  reactor:
+    debug-agent:
+      enabled: false
 server:
   servlet:
     context-path: /api/v1/

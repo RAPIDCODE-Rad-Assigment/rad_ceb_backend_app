@@ -27,7 +27,7 @@ public class MeterReadingReaderController {
 
     }
 
-    @GetMapping("/history/{meterId}")
+    @GetMapping("/history/reader/{meterId}")
     public ResponseEntity<PageResponse<MeterReadingResponse>> getReadingHistoryForReader(
             @PathVariable UUID meterId,
             Authentication connectedUser,
