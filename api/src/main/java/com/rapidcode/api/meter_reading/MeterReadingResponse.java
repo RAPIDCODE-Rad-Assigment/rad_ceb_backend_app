@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -20,10 +21,9 @@ public class MeterReadingResponse {
     private String meterImage;
     private String notes;
     private ReadingStatus status;
-
+    private List<String> imageBase64List;
     private Double consumption;
     private Double unitPrice;
     private Double totalPrice;
-
     private String validationMessage;
 }

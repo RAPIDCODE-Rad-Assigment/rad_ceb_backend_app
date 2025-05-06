@@ -30,6 +30,11 @@ Next stop the application and comment the command line runner and set the ddl-au
 Now the admin user and roles are made, and you are ready to use the application
 
 
+!Important for frontend development!
+### Complaint Enums 
+Category :  BILLING, TECHNICAL, OTHER
+Status:  PENDING, IN_PROGRESS, RESOLVED, REJECTED
+
 
 
 
