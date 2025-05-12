@@ -17,6 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 @Configuration
 public class ApplicationConfig {
@@ -56,8 +57,15 @@ public class ApplicationConfig {
     public CorsFilter corsFilter(){
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
+
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+        // Specify your allowed origins (Flutter local and ngrok URL)
+        config.setAllowedOriginPatterns(Arrays.asList(
+                "https://2a71-2402-4000-b200-194c-a576-d20c-c803-699f.ngrok-free.app",
+                "http://localhost:*", // Flutter local development
+                "http://192.168.*.*:*" // Local network IP (Flutter on mobile)
+        ));
+
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.ORIGIN,
                 HttpHeaders.CONTENT_TYPE,
@@ -69,8 +77,10 @@ public class ApplicationConfig {
                 "POST",
                 "PUT",
                 "PATCH",
-                "DELETE"
+                "DELETE",
+                "OPTIONS"
         ));
+
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }

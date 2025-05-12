@@ -4,7 +4,7 @@ package com.rapidcode.api.complaints;
 import com.rapidcode.api.common.PageResponse;
 import com.rapidcode.api.common.ResultResponse;
 import com.rapidcode.api.user.User;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.data.domain.Page;
@@ -43,6 +43,7 @@ public class ComplainService {
                 .build();
     }
 
+    @Transactional
     public ResultResponse<ComplaintResponse> getById(Long id) {
         Complaint complaint = complaintRepository.findByIdWithImagesAndUser(id)
                 .orElseThrow(() -> new RuntimeException("Complaint not found with id: " + id));
@@ -55,6 +56,7 @@ public class ComplainService {
                 .build();
     }
 
+    @Transactional(readOnly = true)
     public List<ComplaintResponse> getComplaintsByUserId(UUID userId) {
         return complaintRepository.findByUserId(userId).stream()
                 .map(ComplaintMapper::toResponse)
@@ -104,6 +106,7 @@ public class ComplainService {
                 .build();
     }
 
+    @Transactional
     public PageResponse<ComplaintResponse> getAllComplaints(
             int page, int size, Long userId, String roleName, Complaint.Status status) {
 

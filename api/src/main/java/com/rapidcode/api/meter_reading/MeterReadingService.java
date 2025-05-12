@@ -50,12 +50,10 @@ public class MeterReadingService {
             throw new OperationNotPermittedException("You are not assigned to this meter's area");
         }
 
-        // Get previous reading for validation and consumption calculation
-        Optional<MeterReading> previousReading = meterReadingRepository
-                .findTopByMeterIdOrderByReadingDateDesc(meter.getId());
+
 
         // Calculate consumption
-        Double consumption = calculateConsumption(request.getReadingValue(), previousReading);
+        Double consumption = request.getReadingValue();
 
         // Calculate price
         PricingInfo pricingInfo = pricingService.calculatePrice(consumption);
@@ -105,13 +103,14 @@ public class MeterReadingService {
 
     private Double calculateConsumption(Double currentReading, Optional<MeterReading> previousReading) {
         if (previousReading.isEmpty()) {
-            return 0.0; // First reading for this meter
+            return currentReading;
         }
         return currentReading - previousReading.get().getReadingValue();
     }
 
 
 
+    @Transactional
     public PageResponse<MeterReadingResponse> getReadingHistoryForReader(
             UUID meterId, UUID userId, int page, int size) {
 
@@ -134,6 +133,8 @@ public class MeterReadingService {
         );
     }
 
+
+    @Transactional
     public PageResponse<MeterReadingResponse> getReadingHistory(
             UUID meterId, int page, int size) {
 

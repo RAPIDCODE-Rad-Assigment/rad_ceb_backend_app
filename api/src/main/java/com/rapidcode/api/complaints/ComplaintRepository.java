@@ -12,7 +12,12 @@ import java.util.UUID;
 
 
 public interface ComplaintRepository extends JpaRepository<Complaint, Long> {
-    List<Complaint> findByUserId(UUID userId); // FIXED
+
+    @Query("SELECT c FROM Complaint c LEFT JOIN FETCH c.imageBase64List WHERE c.user.id = :userId")
+    List<Complaint> findByUserId(@Param("userId") UUID userId); // FIXED
+
+
+
 
     List<Complaint> findByStatus(Complaint.Status status);
 

@@ -25,31 +25,31 @@ public class ApiApplication {
         SpringApplication.run(ApiApplication.class, args);
     }
 
-    @Bean
-	public CommandLineRunner commandLineRunner(
-			AuthenticationService service,
-			RoleRepository roleRepository
-
-
-	) {
-		return args -> {
-			initializeRoles(roleRepository);
-
-			var admin = RegisterRequest.builder()
-					.usersName("ceblk")
-                    .email("cebadmin@example.com")
-                    .address("Colombo")
-                    .phoneNumber("0771234567")
-                    .fullName("CEB Admin")
-                    .password("password")
-					.build();
-
-			System.out.println("Admin token: " + service.registerAdmin(admin).getAccessToken());
-
-
-
-		};
-	}
+//    @Bean
+//	public CommandLineRunner commandLineRunner(
+//			AuthenticationService service,
+//			RoleRepository roleRepository
+//
+//
+//	) {
+//		return args -> {
+//			initializeRoles(roleRepository);
+//
+//			var admin = RegisterRequest.builder()
+//					.usersName("ceblk")
+//                    .email("cebadmin@example.com")
+//                    .address("Colombo")
+//                    .phoneNumber("0771234567")
+//                    .fullName("CEB Admin")
+//                    .password("password")
+//					.build();
+//
+//			System.out.println("Admin token: " + service.registerAdmin(admin).getAccessToken());
+//
+//
+//
+//		};
+//	}
 
 
     private void initializeRoles(RoleRepository roleRepository) {

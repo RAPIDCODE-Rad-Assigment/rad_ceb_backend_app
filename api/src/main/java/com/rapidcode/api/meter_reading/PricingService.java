@@ -3,6 +3,8 @@ package com.rapidcode.api.meter_reading;
 import lombok.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PricingService {
 
@@ -13,14 +15,16 @@ public class PricingService {
     private double taxRate;
 
     public PricingInfo calculatePrice(Double consumption) {
-        if (consumption == null || consumption <= 0) {
+        double safeConsumption = Optional.ofNullable(consumption).orElse(0.0);
+
+        if (safeConsumption <= 0) {
             return PricingInfo.builder()
                     .unitPrice(baseRate)
                     .totalPrice(0.0)
                     .build();
         }
 
-        double totalBeforeTax = consumption * baseRate;
+        double totalBeforeTax = safeConsumption * baseRate;
         double taxAmount = totalBeforeTax * taxRate;
         double totalPrice = totalBeforeTax + taxAmount;
 
