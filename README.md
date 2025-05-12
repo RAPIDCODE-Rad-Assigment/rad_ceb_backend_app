@@ -31,9 +31,33 @@ Now the admin user and roles are made, and you are ready to use the application
 
 
 !Important for frontend development!
+
 ### Complaint Enums 
 Category :  BILLING, TECHNICAL, OTHER
 Status:  PENDING, IN_PROGRESS, RESOLVED, REJECTED
+
+### Meter enums
+MeterStatus: ACTIVE, INACTIVE, FAULTY
+
+
+### Meter Reading enums
+ReadingStatus: PENDING, APPROVED, REJECTED, FLAGGED
+
+
+### Role enums
+RoleName : USER, ADMIN, METER_READER
+
+
+### Token enums
+TokenType : BEARER , PASSWORD_RESET
+
+
+
+
+
+
+
+
 
 
 
