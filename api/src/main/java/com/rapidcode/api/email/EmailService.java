@@ -194,4 +194,71 @@ public class EmailService {
 
         mailSender.send(mimeMessage);
     }
+
+
+    @Async
+    public void sendComplaintResponseEmail(
+            String to,
+            String username,
+            String complaintDescription,
+            String adminResponse,
+            String subject) throws MessagingException {
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(
+                mimeMessage,
+                MULTIPART_MODE_MIXED,
+                UTF_8.name()
+        );
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("username", username);
+        properties.put("complaintDescription", complaintDescription);
+        properties.put("adminResponse", adminResponse);
+
+        Context context = new Context();
+        context.setVariables(properties);
+
+        helper.setFrom("support@ceblk.com");
+        helper.setTo(to);
+        helper.setSubject(subject);
+
+        String template = templateEngine.process("complaint_response", context);
+        helper.setText(template, true);
+
+        mailSender.send(mimeMessage);
+    }
+
+    @Async
+    public void sendComplaintResolutionEmail(
+            String to,
+            String username,
+            String complaintDescription,
+            String resolution,
+            String subject) throws MessagingException {
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(
+                mimeMessage,
+                MULTIPART_MODE_MIXED,
+                UTF_8.name()
+        );
+
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("username", username);
+        properties.put("complaintDescription", complaintDescription);
+        properties.put("resolution", resolution);
+
+        Context context = new Context();
+        context.setVariables(properties);
+
+        helper.setFrom("support@ceblk.com");
+        helper.setTo(to);
+        helper.setSubject(subject);
+
+        String template = templateEngine.process("complaint_resolution", context);
+        helper.setText(template, true);
+
+        mailSender.send(mimeMessage);
+    }
 }

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Complaint Update</title>
+</head>
+<body>
+<p>Dear <span th:text="${username}">User</span>,</p>
+<p>We have an update regarding your complaint:</p>
+<blockquote th:text="${complaintDescription}"></blockquote>
+<p>Our response:</p>
+<blockquote th:text="${adminResponse}"></blockquote>
+<p>Thank you for your patience.</p>
+<p>CEB Support Team</p>
+</body>
+</html>
