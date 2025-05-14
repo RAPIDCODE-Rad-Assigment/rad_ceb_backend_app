@@ -30,7 +30,7 @@ public class MeterReadingService {
     private final MeterReadingRepository meterReadingRepository;
     private final UserRepository userRepository;
     private final MeterReadingMapper meterReadingMapper;
-//    private final NotificationService notificationService;
+    //    private final NotificationService notificationService;
     private final PricingService pricingService;
 
 
@@ -158,7 +158,7 @@ public class MeterReadingService {
     }
 
 
-
+    @Transactional
     public PageResponse<MeterReadingResponse> getAssignedReadingsForReader(
             UUID userId, int page, int size) {
 
@@ -181,6 +181,7 @@ public class MeterReadingService {
         );
     }
 
+    @Transactional
     public PageResponse<MeterReadingResponse> getAllMeterReadings(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("readingDate").descending());
         Page<MeterReading> readings = meterReadingRepository.findAll(pageable);
@@ -200,6 +201,7 @@ public class MeterReadingService {
         );
     }
 
+    @Transactional
     // Get all meter readings for a specific meter (paginated)
     public PageResponse<MeterReadingResponse> getMeterReadingsByMeterId(UUID meterId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("readingDate").descending());
@@ -253,4 +255,25 @@ public class MeterReadingService {
                 .data("Meter reading deleted successfully")
                 .build();
     }
+
+
+    @Transactional
+    public PageResponse<MeterReadingResponse> getMeterReadingById(UUID id) {
+        var meterReading = meterReadingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Meter reading not found"));
+
+        MeterReadingResponse response = meterReadingMapper.toResponse(meterReading);
+
+        return new PageResponse<>(
+                List.of(response),
+                0,
+                1,
+                1L,
+                1,
+                true,
+                true
+        );
+    }
+
+
 }

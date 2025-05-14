@@ -19,7 +19,7 @@ spring:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   thymeleaf:
-      cache: false
+    cache: false
 
   servlet:
     multipart:
@@ -67,6 +67,14 @@ application:
     urls:
       app-url: http://localhost:8080
 
+  payhere:
+    sandbox-url: https://sandbox.payhere.lk/pay/checkoutJ
+    notify-url: https://ceylonbytepay.com/api/payhere/notify
+    return-url: https://ceylonbytepay.com/api/payhere/payment-success
+    cancel-url: https://ceylonbytepay.com/api/payhere/payment-cancelled
+    merchant-id: 1228129
+    merchant-secret: MjgwMjkwNTI0NDY0NjE4MzE2MTY5NDIyNDA0NDE0NzM2MzU5NTA=
+
 
 
 springdoc:
@@ -84,3 +92,4 @@ logging:
       hibernate.stat: debug
       hibernate.SQL_SLOW: info
       hibernate.cache: debug
+

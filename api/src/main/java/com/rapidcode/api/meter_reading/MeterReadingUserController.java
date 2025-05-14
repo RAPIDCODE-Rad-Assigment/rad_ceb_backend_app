@@ -22,6 +22,13 @@ public class MeterReadingUserController {
         return ResponseEntity.ok(meterReadingService.getMeterReadingsByMeterId(meterId, page, size));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PageResponse<MeterReadingResponse>> getMeterReadingById(
+            @PathVariable UUID id
+    ){
+        return ResponseEntity.ok(meterReadingService.getMeterReadingById(id));
+    }
+
     @GetMapping("/history/{meterId}")
     public ResponseEntity<PageResponse<MeterReadingResponse>> getReadingHistoryForMeter(
             @PathVariable UUID meterId,
