@@ -21,12 +21,19 @@ public class Complaint {
 
     private String RoleName;
 
-    @ManyToOne(fetch = FetchType.LAZY) // or EAGER if you prefer
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     @Enumerated(EnumType.STRING)
     private Category category;
+
+
+    private String name;
+
+    private String contact;
+
+    private String location;
 
     @Column(columnDefinition = "TEXT")
     private String description;

@@ -34,11 +34,14 @@ public class ComplainService {
     public ResultResponse<ComplaintResponse> createComplaint(ComplaintRequest request, User user) {
         Complaint complaint = new Complaint();
         complaint.setUser(user);
-        complaint.setCategory(request.getCategory());
+        complaint.setCategory(request.getCategory() != null ? request.getCategory() : Complaint.Category.OTHER);
         complaint.setDescription(request.getDescription());
         complaint.setImageBase64List(request.getImageBase64List());
         complaint.setStatus(Complaint.Status.PENDING);
         complaint.setCreatedAt(LocalDateTime.now());
+        complaint.setName(request.getName());
+        complaint.setContact(request.getContact());
+        complaint.setLocation(request.getLocation());
 
         Complaint saved = complaintRepository.save(complaint);
         ComplaintResponse response = ComplaintMapper.toResponse(saved);

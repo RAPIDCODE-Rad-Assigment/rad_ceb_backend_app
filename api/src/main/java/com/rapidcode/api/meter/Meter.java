@@ -47,6 +47,8 @@ public class Meter {
     @JoinColumn(name = "area_id", nullable = false)
     private Area area;
 
+    private Double dueAmount;
+
     private Double lastReadingValue;
     private LocalDateTime lastReadingDate;
 }

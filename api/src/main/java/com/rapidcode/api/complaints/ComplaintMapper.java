@@ -15,6 +15,9 @@ public class ComplaintMapper {
         response.setCategory(String.valueOf(complaint.getCategory()));
         response.setCreatedAt(complaint.getCreatedAt());
         response.setImageBase64List(complaint.getImageBase64List());
+        response.setName(complaint.getName());
+        response.setContact(complaint.getContact());
+        response.setLocation(complaint.getLocation());
 
         User user = complaint.getUser();
         if (user != null) {

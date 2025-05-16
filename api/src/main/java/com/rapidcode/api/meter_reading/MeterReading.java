@@ -41,6 +41,8 @@ public class MeterReading {
     private String notes;
     private ReadingStatus status;
 
+    private LocalDateTime paymentDoneAt;
+
     @CreatedDate
     private LocalDateTime createdDate;
 

@@ -50,6 +50,7 @@ public class MeterService {
         meter.setArea(area);
         meter.setCreatedDate(LocalDateTime.now());
         meter.setLastModifiedDate(LocalDateTime.now());
+        meter.setDueAmount(0.0);
 
         Meter savedMeter = meterRepository.save(meter);
 

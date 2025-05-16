@@ -22,5 +22,6 @@ public class MeterResponse {
     private LocalDateTime createdDate;
     private LocalDateTime lastModifiedDate;
     private AreaResponse area;
+    private Double dueAmount;
 
 }

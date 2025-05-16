@@ -37,7 +37,10 @@ public class SecurityConfiguration {
             "/users/enable_user",
             "/image/{postId}",
             "/image/all",
-            "/posts/**"
+            "/posts/**",
+            "/payments/notify",  // Whitelist Notify URL
+            "/payments/return",  // Whitelist Return URL
+            "/payments/cancel"   // Whitelist Cancel URL
     };
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;

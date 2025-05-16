@@ -15,6 +15,9 @@ public class ComplaintResponse {
     private LocalDateTime createdAt;
     private UserInfo user;
     private List<String> imageBase64List;
+    private String name;
+    private String contact;
+    private String location;
 
 
     @Data

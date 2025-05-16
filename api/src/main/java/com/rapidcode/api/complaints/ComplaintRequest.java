@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ComplaintRequest {
-    @NotEmpty(message = "Category is required")
+
     private Complaint.Category category;
 
     @NotEmpty(message = "Description is required")
@@ -19,4 +19,12 @@ public class ComplaintRequest {
 
     private List<String> imageBase64List;
 
+    @NotEmpty(message = "Name is required")
+    private String name;
+
+    @NotEmpty(message = "Contact is required")
+    private String contact;
+
+    @NotEmpty(message = "Location is required")
+    private String location;
 }

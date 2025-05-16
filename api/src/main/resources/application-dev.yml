@@ -67,6 +67,14 @@ application:
     urls:
       app-url: http://localhost:8080
 
+  payhere:
+    sandbox-url: https://sandbox.payhere.lk/pay/checkoutJ
+    notify-url: https://2491-2402-4000-2120-21d5-c1fd-5e6e-aeec-2870.ngrok-free.app/api/v1/payments/notify
+    return-url: https://2491-2402-4000-2120-21d5-c1fd-5e6e-aeec-2870.ngrok-free.app/api/v1/payments/return
+    cancel-url: https://2491-2402-4000-2120-21d5-c1fd-5e6e-aeec-2870.ngrok-free.app/api/v1/payments/cancel
+    merchant-id: 1228129
+    merchant-secret: MjM2OTM5NDgzNTYwODQ3MDQzODE1MDQ4NDIyMjEzNTU2Mjg5MTI3
+
 
 
 springdoc:
@@ -84,3 +92,4 @@ logging:
       hibernate.stat: debug
       hibernate.SQL_SLOW: info
       hibernate.cache: debug
+

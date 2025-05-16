@@ -38,6 +38,7 @@ public class MeterMapper {
                 .status(meter.getStatus())
                 .user(userResponse)
                 .area(areaResponse)
+                .dueAmount(meter.getDueAmount())
                 .createdDate(meter.getCreatedDate())
                 .lastModifiedDate(meter.getLastModifiedDate())
                 .build();
