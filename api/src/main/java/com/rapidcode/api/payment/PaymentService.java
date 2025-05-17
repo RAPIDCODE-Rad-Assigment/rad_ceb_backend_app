@@ -22,6 +22,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.UUID;
 
@@ -32,6 +33,7 @@ public class PaymentService {
     private final MeterRepository meterRepository;
     private final MeterReadingRepository meterReadingRepository;
     private final RestTemplate restTemplate;
+    private final EventRepository eventRepository;
 
 
     @Value("${application.payhere.sandbox-url}")
@@ -161,7 +163,6 @@ public class PaymentService {
         String status = params.get("status_code");
         String payhere_amount = params.get("payhere_amount");
 
-
         // Extract reading ID from order ID (MR-<full UUID>)
         if (!orderId.startsWith("MR-")) {
             throw new IllegalArgumentException("Invalid order ID format");
@@ -174,17 +175,25 @@ public class PaymentService {
             MeterReading reading = meterReadingRepository.findById(readingId)
                     .orElseThrow(() -> new RuntimeException("Meter reading not found"));
 
-            var meter_id = reading.getMeter().getId();
-
             Meter meter = reading.getMeter();
 
             if ("2".equals(status)) { // PayHere status code 2 means payment success
+                // Process payment
                 Double paymentAmount = Double.parseDouble(payhere_amount);
                 Double currentDue = meter.getDueAmount() != null ? meter.getDueAmount() : 0.0;
                 double newDue = currentDue - paymentAmount;
-
-                // Ensure due amount doesn't go negative
                 meter.setDueAmount(Math.max(newDue, 0.0));
+
+                // Create and save payment event
+                Event paymentEvent = Event.builder()
+                        .date(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy")))
+                        .title("Payment Made")
+                        .description(String.format("Payment amount\nRs.%.2f\nPaid via PayHere", paymentAmount))
+                        .icon("payment")
+                        .meter(meter)
+                        .build();
+
+                eventRepository.save(paymentEvent);
 
                 log.info("Payment successful for order ID: {}", orderId);
             } else {
@@ -192,10 +201,12 @@ public class PaymentService {
             }
 
             meterReadingRepository.save(reading);
+            meterRepository.save(meter);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid UUID in order ID: " + readingIdStr, e);
         }
     }
+
 
     private boolean verifyPayment(Map<String, String> params) {
         try {

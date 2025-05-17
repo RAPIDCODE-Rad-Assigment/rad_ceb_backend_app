@@ -61,7 +61,7 @@ public class ApplicationConfig {
         config.setAllowCredentials(true);
         // Specify your allowed origins (Flutter local and ngrok URL)
         config.setAllowedOriginPatterns(Arrays.asList(
-                "https://2491-2402-4000-2120-21d5-c1fd-5e6e-aeec-2870.ngrok-free.app",
+                "https://dd6d-2402-4000-2310-bcb-3059-4203-38b7-95a.ngrok-free.app",
                 "http://localhost:8080/api/v1", // Flutter local development
                 "http://192.168.*.*:*" // Local network IP (Flutter on mobile)
         ));

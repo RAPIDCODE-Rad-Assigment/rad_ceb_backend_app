@@ -29,8 +29,8 @@ import io.swagger.v3.oas.annotations.servers.Server;
         servers = {
                 @Server(
                         description = "Local ENV",
-                        url = "http://localhost:8080/api/v1"
-//                        url = "https://2491-2402-4000-2120-21d5-c1fd-5e6e-aeec-2870.ngrok-free.app/api/v1"
+//                        url = "http://localhost:8080/api/v1"
+                        url = "https://dd6d-2402-4000-2310-bcb-3059-4203-38b7-95a.ngrok-free.app/api/v1"
                 )
 //                @Server(
 //                        description = "PROD ENV",

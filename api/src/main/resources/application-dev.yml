@@ -69,9 +69,9 @@ application:
 
   payhere:
     sandbox-url: https://sandbox.payhere.lk/pay/checkoutJ
-    notify-url: https://2491-2402-4000-2120-21d5-c1fd-5e6e-aeec-2870.ngrok-free.app/api/v1/payments/notify
-    return-url: https://2491-2402-4000-2120-21d5-c1fd-5e6e-aeec-2870.ngrok-free.app/api/v1/payments/return
-    cancel-url: https://2491-2402-4000-2120-21d5-c1fd-5e6e-aeec-2870.ngrok-free.app/api/v1/payments/cancel
+    notify-url:  https://dd6d-2402-4000-2310-bcb-3059-4203-38b7-95a.ngrok-free.app/api/v1/payments/notify
+    return-url:  https://dd6d-2402-4000-2310-bcb-3059-4203-38b7-95a.ngrok-free.app/api/v1/payments/return
+    cancel-url:  https://dd6d-2402-4000-2310-bcb-3059-4203-38b7-95a.ngrok-free.app/api/v1/payments/cancel
     merchant-id: 1228129
     merchant-secret: MjM2OTM5NDgzNTYwODQ3MDQzODE1MDQ4NDIyMjEzNTU2Mjg5MTI3
 
